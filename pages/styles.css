@@ -335,3 +335,12 @@ a.stayinformed {
   font-size: 22px;
   vertical-align: middle;
 }
+
+.load-more {
+  border-radius: 0.2rem;
+  border-color: #ffffff;
+  color: #ffffff;
+  background-color: #0078d4;
+  display: inline-block;
+  border-radius: 0;
+}

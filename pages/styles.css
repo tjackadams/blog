@@ -33,6 +33,10 @@ pre {
   border: 0 !important;
 }
 
+code {
+  color: #c00;
+}
+
 dl,
 ol,
 ul {
@@ -319,9 +323,18 @@ img.avatar {
   padding: 10px 0 80px;
   font-weight: 500;
   letter-spacing: 0.2px;
-  text-transform: uppercase;
   white-space: nowrap;
   -ms-overflow-scrolling: touch;
+}
+
+.site-nav-content {
+  position: relative;
+  align-self: flex-start;
+}
+
+.nav-post-title {
+  font-size: 1.7rem;
+  font-weight: 400;
 }
 
 .wrapper {

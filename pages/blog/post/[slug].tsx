@@ -1,27 +1,38 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import fs from "fs";
 import path from "path";
 import { GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
+import TrackVisibility from "react-on-screen";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PostLayout } from "../../../components/Layout/PostLayout";
 import { Post as BlogPost } from "./Post.types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IPostProps {
-  blogpost: BlogPost;
+  post: BlogPost;
 }
 
-const Post: FunctionComponent<IPostProps> = ({ blogpost }) => {
-  if (!blogpost) return <div>not found</div>;
+const defaultTitle = "tjackadams blog";
 
-  const { html, attributes } = blogpost;
+const Post: FunctionComponent<IPostProps> = ({ post }) => {
+  if (!post) return <div>not found</div>;
+
+  const { html, attributes } = post;
+
+  const [title, setTitle] = useState(defaultTitle);
 
   return (
-    <PostLayout>
+    <PostLayout title={title}>
       <article>
         <div className="row justify-content-center postcontent x-hidden-focus">
           <div className="entry-content col-12">
-            <h1 className="entry-title">{attributes.title}</h1>
+            <TrackVisibility>
+              {({ isVisible }) => {
+                setTitle(isVisible ? defaultTitle : attributes.title);
+
+                return <h1 className="entry-title">{attributes.title}</h1>;
+              }}
+            </TrackVisibility>
             <div className="row justify-content-center">
               <div className="col-md-4">
                 <div style={{ margin: "20px 0", textAlign: "center" }}>
@@ -121,13 +132,13 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params;
 
-  const blogpost = await import(`../../../content/blogPosts/${slug}.md`).catch(
+  const post = await import(`../../../content/blogPosts/${slug}.md`).catch(
     () => null
   );
 
   return {
     props: {
-      blogpost: blogpost.default,
+      post: post.default,
     },
   };
 };

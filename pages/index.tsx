@@ -3,20 +3,7 @@ import { Layout } from "../components/Layout/Layout";
 import { GetStaticProps } from "next";
 import { Post } from "./blog/post/Post.types";
 import PostSection from "../components/PostSection/PostSection";
-
-const importBlogPosts = async () => {
-  const markdownFiles = require
-    .context("../content/blogPosts", false, /\.md$/)
-    .keys()
-    .map((relativePath) => relativePath.substring(2));
-
-  return Promise.all(
-    markdownFiles.map(async (path) => {
-      const markdown = await import(`../content/blogPosts/${path}`);
-      return { ...markdown, slug: path.substring(0, path.length - 3) };
-    })
-  );
-};
+import { getPosts } from "./Utilities";
 
 interface IHomeProps {
   posts: Post[];
@@ -38,7 +25,7 @@ const Home: FunctionComponent<IHomeProps> = ({ posts }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const posts = await importBlogPosts();
+  const posts = await getPosts();
 
   return {
     props: {

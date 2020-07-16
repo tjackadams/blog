@@ -1,14 +1,30 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { SocialLinks } from "../SocialLinks/SocialLinks";
+import { RelatedPostCard } from "../PostCard/index";
+import { Post } from "../../pages/blog/post/Post.types";
+import { Footer } from "..";
 
 interface IPostLayoutProps {
   title: string;
+  slug: string;
+  allPosts: Post[];
 }
 
 export const PostLayout: FunctionComponent<IPostLayoutProps> = ({
   title,
+  slug,
+  allPosts,
   children,
 }) => {
+  const [readNext, setReadNext] = useState<Post[]>([]);
+
+  useEffect(() => {
+    let index = allPosts.findIndex((p) => p.slug === slug);
+    let posts = allPosts.slice(index + 1, 2);
+
+    setReadNext(posts);
+  }, [slug, allPosts]);
+
   return (
     <>
       <nav className="site-header sticky-top">
@@ -34,12 +50,28 @@ export const PostLayout: FunctionComponent<IPostLayoutProps> = ({
           <div className="container" tabIndex={-1}>
             <div className="row">
               <div className="col-md content-area">
-                <main className="site-main">{children}</main>
+                <main className="site-main">
+                  {children}
+                  {!!readNext.length && (
+                    <div className="related-postssection">
+                      <h5>Read next</h5>
+                      <div className="row related-articles">
+                        {readNext.map((post, index) => (
+                          <RelatedPostCard
+                            key={post.attributes.title + index}
+                            post={post}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </main>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

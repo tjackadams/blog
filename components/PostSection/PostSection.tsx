@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Post } from "../../pages/blog/post/Post.types";
-import PostCard from "../PostCard/PostCard";
+import { PostCard } from "..";
 
 interface IPostSectionProps {
   posts: Post[];
@@ -9,7 +9,7 @@ interface IPostSectionProps {
   perPageLimit: number;
 }
 
-const PostSection: FunctionComponent<IPostSectionProps> = ({
+export const PostSection: FunctionComponent<IPostSectionProps> = ({
   posts,
   showLoadMore,
   loadMoreTitle,
@@ -42,12 +42,3 @@ const PostSection: FunctionComponent<IPostSectionProps> = ({
     </div>
   );
 };
-
-PostSection.defaultProps = {
-  posts: [],
-  showLoadMore: true,
-  loadMoreTitle: "Load More",
-  perPageLimit: 12,
-};
-
-export default PostSection;

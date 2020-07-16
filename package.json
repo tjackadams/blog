@@ -15,10 +15,10 @@
     "@fortawesome/react-fontawesome": "^0.1.11",
     "bootstrap": "^4.5.0",
     "date-fns": "^2.14.0",
+    "lodash.throttle": "^4.1.1",
     "next": "latest",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-on-screen": "^2.1.1"
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.22",

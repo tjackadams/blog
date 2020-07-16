@@ -357,3 +357,131 @@ a.stayinformed {
   display: inline-block;
   border-radius: 0;
 }
+
+.related-articles {
+  margin-top: 25px;
+  margin-bottom: 70px;
+}
+
+.related-articles article .post-card {
+  background-color: #fff;
+  -webkit-box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+    0 1.6px 3.6px rgba(0, 0, 0, 0.132);
+  -moz-box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+    0 1.6px 3.6px rgba(0, 0, 0, 0.132);
+  box-shadow: 0 0.3px 0.9px rgba(0, 0, 0, 0.108),
+    0 1.6px 3.6px rgba(0, 0, 0, 0.132);
+  border-radius: 2px;
+  padding: 20px 40px 0;
+}
+
+.related-articles article .article-title {
+  display: block;
+  color: #005da6;
+  font-size: 20px;
+  margin-top: 5px;
+  line-height: 24px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.related-articles article .post-card .post-desc,
+.related-articles article .post-card .post-desc em {
+  font-size: 16px;
+  font-style: normal;
+  line-height: 24px;
+  color: #666;
+}
+
+.author-details {
+  padding: 12px 0;
+}
+
+.author-details a {
+  text-decoration: none;
+}
+
+.author-details .avatar-img {
+  margin-right: 9px;
+  vertical-align: bottom;
+}
+
+.author-details .avatar-img img {
+  max-width: 24px;
+  border-radius: 100%;
+}
+
+.author-details .author-name {
+  font-size: 18px;
+  color: #005da6;
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+.author-details .post-date {
+  font-size: 16px;
+  color: #666;
+}
+
+.footer {
+  background: #f2f2f2;
+  margin-top: 48px;
+}
+
+.footer-context {
+  font-size: 15px;
+  font-family: "Segoe UI", SegoeUI, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  min-width: 320px;
+  color: #000;
+}
+
+.footer-context *,
+.footer-context *:before,
+.footer-context *:after {
+  box-sizing: inherit;
+}
+
+.footer-base {
+  background: #f2f2f2;
+  margin: 0 auto;
+  max-width: calc(1600px + 10%);
+  padding: 30px 5% 16px;
+}
+
+.footer-context nav {
+  display: block;
+}
+
+.footer-context ol,
+.footer-context ul {
+  padding: 0;
+  list-style: none;
+}
+.footer-links {
+  font-size: 11px;
+  line-height: 16px;
+  float: right;
+  margin: 3px 0;
+  color: #616161;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.footer-links li {
+  padding: 0 24px 4px 0;
+  display: inline-block;
+}
+
+@media screen and (min-width: 860px) {
+  .footer-context li {
+    word-break: break-word;
+  }
+}
+
+.footer-context ul,
+.footer-context li {
+  padding: 0;
+  margin: 0;
+}

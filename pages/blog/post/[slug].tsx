@@ -7,32 +7,36 @@ import TrackVisibility from "react-on-screen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PostLayout } from "../../../components/Layout/PostLayout";
 import { Post as BlogPost } from "./Post.types";
+import { getPosts } from "../../Utilities";
+import useVisibility from "../../../hooks/useVisibility";
 
 interface IPostProps {
+  slug: string;
   post: BlogPost;
+  allPosts: BlogPost[];
 }
 
 const defaultTitle = "tjackadams blog";
 
-const Post: FunctionComponent<IPostProps> = ({ post }) => {
+const Post: FunctionComponent<IPostProps> = ({ slug, post, allPosts }) => {
   if (!post) return <div>not found</div>;
 
   const { html, attributes } = post;
 
-  const [title, setTitle] = useState(defaultTitle);
+  const [isVisible, currentElement] = useVisibility<HTMLDivElement>(-10);
 
   return (
-    <PostLayout title={title}>
-      <article>
+    <PostLayout
+      title={isVisible ? defaultTitle : attributes.title}
+      slug={slug}
+      allPosts={allPosts}
+    >
+      <article style={{ marginBottom: "20px" }}>
         <div className="row justify-content-center postcontent x-hidden-focus">
           <div className="entry-content col-12">
-            <TrackVisibility>
-              {({ isVisible }) => {
-                setTitle(isVisible ? defaultTitle : attributes.title);
-
-                return <h1 className="entry-title">{attributes.title}</h1>;
-              }}
-            </TrackVisibility>
+            <h1 ref={currentElement} className="entry-title">
+              {attributes.title}
+            </h1>
             <div className="row justify-content-center">
               <div className="col-md-4">
                 <div style={{ margin: "20px 0", textAlign: "center" }}>
@@ -132,13 +136,16 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params;
 
+  const allPosts = await getPosts();
   const post = await import(`../../../content/blogPosts/${slug}.md`).catch(
     () => null
   );
 
   return {
     props: {
+      slug: slug,
       post: post.default,
+      allPosts: allPosts,
     },
   };
 };

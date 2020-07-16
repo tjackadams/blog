@@ -1,9 +1,8 @@
 import { FunctionComponent } from "react";
-import { Layout } from "../components/Layout/Layout";
 import { GetStaticProps } from "next";
 import { Post } from "./blog/post/Post.types";
-import PostSection from "../components/PostSection/PostSection";
 import { getPosts } from "./Utilities";
+import { Layout, PostSection } from "../components";
 
 interface IHomeProps {
   posts: Post[];

@@ -7,7 +7,7 @@ interface IPostCardProps {
   post: Post;
 }
 
-const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
+export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
   return (
     <article key={post.slug} className="landing-main">
       <div className="row post-card">
@@ -63,5 +63,3 @@ const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
     </article>
   );
 };
-
-export default PostCard;

@@ -2,12 +2,14 @@ backend:
   name: git-gateway
   branch: master
 publish_mode: editorial_workflow
+media_folder: /public/static/media
+public_folder: /static/media
 collections:
   - label: Posts
     name: posts
     label_signature: "Post"
     folder: "content/posts"
-    path: "{{slug}}/index"
+    path: "{{title}}/{{slug}}"
     media_folder: ""
     public_folder: ""
     create: true

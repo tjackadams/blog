@@ -6,8 +6,7 @@ tags:
   - Code
 featured_image:
   image-alt: image alt text
-  image-src: >-
-    /static/img/grayscale-photo-of-computer-laptop-near-white-notebook-and-169573.jpg
+  image-src: /static/img/ms-developer-tool-blogs.png
   image-title: image title
 ---
 Post content

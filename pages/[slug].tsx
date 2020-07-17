@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import { GetStaticProps } from "next";
 import { format, parseISO } from "date-fns";
-import TrackVisibility from "react-on-screen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PostLayout } from "../components/Layout/PostLayout";
 import { Post as BlogPost } from "./Post.types";

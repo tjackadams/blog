@@ -19,7 +19,7 @@ export const RelatedPostCard: FunctionComponent<IRelatedPostCardProps> = ({
         <div className="post-desc">{post.attributes.description}</div>
         <div className="author-details">
           <Link href="/" as="/">
-            <a>
+            <a rel="noopener">
               <span className="avatar-img">
                 <img
                   src="https://secure.gravatar.com/avatar/1b6126e7eda7d78050b05080b32506b9?s=100&d=mm&r=g"

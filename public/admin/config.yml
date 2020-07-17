@@ -5,14 +5,17 @@ publish_mode: editorial_workflow
 media_folder: /public/static/media
 public_folder: /static/media
 collections:
-  - label: Posts
-    name: posts
-    label_signature: "Post"
+  - name: posts
+    label: Posts
+    label_singular: "Post"
     folder: "content/posts"
-    path: "{{title}}/{{slug}}"
+    create: true
+    slug: "index"
     media_folder: ""
     public_folder: ""
-    create: true
+    path: "{{title}}/index"
+    editor:
+      preview: false
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
       - {

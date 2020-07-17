@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { SocialLinks } from "../SocialLinks/SocialLinks";
 import { RelatedPostCard } from "../PostCard/index";
-import { Post } from "../../pages/Post.types";
+import { Post } from "../../types/Post.types";
 import { Footer } from "..";
 import Link from "next/link";
 

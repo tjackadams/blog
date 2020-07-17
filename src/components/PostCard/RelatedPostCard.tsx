@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Post } from "../../pages/Post.types";
+import { Post } from "../../types/Post.types";
 import { format, parseISO } from "date-fns";
 import Link from "next/link";
 

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import Link from "next/link";
-import { Post } from "../../pages/Post.types";
+import { Post } from "../../types/Post.types";
 import { format, parseISO } from "date-fns";
 
 interface IPostCardProps {

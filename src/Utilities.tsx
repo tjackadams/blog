@@ -1,4 +1,4 @@
-import { Post } from "./Post.types";
+import { Post } from "./types/Post.types";
 
 async function getPosts() {
   const markdownFiles = require

@@ -6,7 +6,13 @@ tags:
   - Code
 featured_image:
   image-alt: image alt text
-  image-src: /static/img/ms-developer-tool-blogs.png
+  image-src: /static/img/newkidsmenu2018.jpg
   image-title: image title
 ---
 Post content
+
+
+
+
+
+![](/static/img/newkidsmenu2018.jpg)

@@ -19,13 +19,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <DefaultSeo
         title="Thomas Adams - Coder"
-        description=""
+        description="Developer, developer, developer."
         canonical="https://blog.itadams.co.uk"
         openGraph={{
           site_name: "Thomas Adams",
           type: "website",
           title: "Thomas Adams",
-          description: "",
+          description: "Developer, developer, developer.",
           url: "https://blog.itadams.co.uk",
           images: [
             {

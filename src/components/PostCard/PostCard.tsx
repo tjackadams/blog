@@ -1,7 +1,9 @@
 import { FunctionComponent } from "react";
 import Link from "next/link";
-import { Post } from "../../types/Post.types";
 import { format, parseISO } from "date-fns";
+import Img from "react-optimized-image";
+
+import { Post } from "../../types/Post.types";
 
 interface IPostCardProps {
   post: Post;
@@ -14,19 +16,21 @@ export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
     <article key={post.slug} className="landing-main">
       <div className="row post-card">
         <div className="entry-image col-lg-4 col-md-12">
+          {/* <Img src={require(attributes.featured_image.src)} /> */}
+
           <div>
             {/* <picture>
               <source
-                srcSet={require(`../../../public/${attributes.featured_image.src}?webp`)}
+                srcSet={require(`/static/img/${attributes.featured_image.src}?webp`)}
                 type="image/webp"
               />
               <source
-                srcSet={require(`../../../public/${attributes.featured_image.src}`)}
+                srcSet={require(`/static/img/${attributes.featured_image.src}`)}
                 type="image/jpg"
               />
               <img
                 className="lp-default-image"
-                src={require(`../../../public/${attributes.featured_image.src}`)}
+                src={require(`/static/img/${attributes.featured_image.src}`)}
                 alt={attributes.featured_image.alt}
                 title={attributes.featured_image.title}
               />

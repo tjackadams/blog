@@ -3,14 +3,19 @@ backend:
   branch: master
 publish_mode: editorial_workflow
 media_folder: static/img
+site_url: https://blog.itadams.co.uk
 slug:
   encoding: "ascii"
   clean_accents: true
   sanitize_replacement: "_"
 collections:
-  - label: "Blog"
-    name: "blog"
-    folder: "content/blogPosts"
+  - name: "posts"
+    label: "Posts"
+    label_singular: "Post"
+    folder: "content/posts"
+    path: "{{slug}}/index"
+    media_folder: ""
+    public_folder: ""
     create: true
     slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
     fields:

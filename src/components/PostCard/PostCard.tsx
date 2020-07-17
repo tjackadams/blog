@@ -15,12 +15,22 @@ export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
       <div className="row post-card">
         <div className="entry-image col-lg-4 col-md-12">
           <div>
-            <img
-              className="lp-default-image"
-              src={attributes.featured_image.src}
-              alt={attributes.featured_image.alt}
-              title={attributes.featured_image.title}
-            />
+            <picture>
+              <source
+                srcSet={require(`../../../public/${attributes.featured_image.src}?webp`)}
+                type="image/webp"
+              />
+              <source
+                srcSet={require(`../../../public/${attributes.featured_image.src}`)}
+                type="image/jpg"
+              />
+              <img
+                className="lp-default-image"
+                src={require(`../../../public/${attributes.featured_image.src}`)}
+                alt={attributes.featured_image.alt}
+                title={attributes.featured_image.title}
+              />
+            </picture>
           </div>
         </div>
         <div className="col-lg-8 col-md-12 post-card-header">

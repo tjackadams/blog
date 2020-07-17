@@ -1,7 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent } from "react";
+import classNames from "classnames";
 import { SocialLinks } from "../SocialLinks/SocialLinks";
 import { Footer } from "..";
+
+import styles from "./Layout.module.css";
 
 interface ILayoutProps {
   title: string;
@@ -15,11 +17,11 @@ export const Layout: FunctionComponent<ILayoutProps> = ({
     <div className="container-fluid">
       <div className="wrapper" id="index-wrapper" style={{ padding: "0" }}>
         <div
-          className="row justify-content-md-center featuresection"
-          style={{
-            backgroundImage: `url("/static/img/header.png")`,
-            opacity: ".98",
-          }}
+          className={classNames(
+            "row",
+            "justify-content-md-center",
+            styles.featuresection
+          )}
         >
           <div className="inner">
             <div className="site-nav-right">

@@ -337,6 +337,11 @@ img.avatar {
   font-weight: 400;
 }
 
+.nav-post-title a {
+  color: unset;
+  text-decoration: none;
+}
+
 .wrapper {
   padding: 30px 0;
 }

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { GetStaticProps } from "next";
-import { Post } from "./blog/post/Post.types";
+import { Post } from "./Post.types";
 import { getPosts } from "./Utilities";
 import { Layout, PostSection } from "../components";
 

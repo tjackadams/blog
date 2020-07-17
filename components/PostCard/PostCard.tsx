@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import Link from "next/link";
-import { Post } from "../../pages/blog/post/Post.types";
+import { Post } from "../../pages/Post.types";
 import { format, parseISO } from "date-fns";
 
 interface IPostCardProps {
@@ -18,21 +18,22 @@ export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
         </div>
         <div className="col-lg-8 col-md-12 post-card-header">
           <h5 className="entry-title">
-            <Link href="/blog/post/[slug]" as={`/blog/post/${post.slug}`}>
+            <Link href="/[slug]" as={`/${post.slug}`}>
               <a rel="bookmark">{post.attributes.title}</a>
             </Link>
           </h5>
           <div className="entry-meta desktop-view x-hidden-focus">
             <span className="entry-avatar">
               <span className="entry-author-link">
-                <a
-                  href="/"
-                  title="Posts by Thomas Adams"
-                  rel="author"
-                  className=" x-hidden-focus"
-                >
-                  Thomas Adams
-                </a>
+                <Link href="/" as="/">
+                  <a
+                    title="Posts by Thomas Adams"
+                    rel="author"
+                    className=" x-hidden-focus"
+                  >
+                    Thomas Adams
+                  </a>
+                </Link>
               </span>
             </span>
             <span className="entry-post-date x-hidden-focus">
@@ -47,9 +48,9 @@ export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
         <div className="col-lg-8 post-cards-tags-categories">
           <div className="post-categories-tags">
             {post.attributes.tags &&
-              post.attributes.tags.map((tag) => (
+              post.attributes.tags.map((tag, index) => (
                 <a
-                  key={tag}
+                  key={tag + index}
                   href=""
                   className="btn-sm cat-comment-tags post-tags"
                 >

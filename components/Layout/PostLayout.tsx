@@ -1,8 +1,9 @@
 import { FunctionComponent, useEffect, useState } from "react";
 import { SocialLinks } from "../SocialLinks/SocialLinks";
 import { RelatedPostCard } from "../PostCard/index";
-import { Post } from "../../pages/blog/post/Post.types";
+import { Post } from "../../pages/Post.types";
 import { Footer } from "..";
+import Link from "next/link";
 
 interface IPostLayoutProps {
   title: string;
@@ -34,7 +35,11 @@ export const PostLayout: FunctionComponent<IPostLayoutProps> = ({
               <div className="site-nav-left-wrapper">
                 <div className="site-nav-left">
                   <div className="site-nav-content">
-                    <span className="nav-post-title">{title}</span>
+                    <span className="nav-post-title">
+                      <Link href="/" as="/">
+                        <a title="Home">{title}</a>
+                      </Link>
+                    </span>
                   </div>
                 </div>
               </div>

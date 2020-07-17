@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { Post } from "../../pages/blog/post/Post.types";
+import { Post } from "../../pages/Post.types";
 import { PostCard } from "..";
 
 interface IPostSectionProps {

@@ -15,7 +15,7 @@ export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
       <div className="row post-card">
         <div className="entry-image col-lg-4 col-md-12">
           <div>
-            <picture>
+            {/* <picture>
               <source
                 srcSet={require(`../../../public/${attributes.featured_image.src}?webp`)}
                 type="image/webp"
@@ -30,7 +30,7 @@ export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
                 alt={attributes.featured_image.alt}
                 title={attributes.featured_image.title}
               />
-            </picture>
+            </picture> */}
           </div>
         </div>
         <div className="col-lg-8 col-md-12 post-card-header">

@@ -31,6 +31,7 @@ const Post: FunctionComponent<IPostProps> = ({ slug, post, allPosts }) => {
       <NextSeo
         title={attributes.title}
         description={attributes.description}
+        canonical={`https://blog.itadams.co.uk/${slug}`}
         openGraph={{
           title: attributes.title,
           description: attributes.description,

@@ -8,12 +8,19 @@ interface IPostCardProps {
 }
 
 export const PostCard: FunctionComponent<IPostCardProps> = ({ post }) => {
+  const { attributes } = post;
+
   return (
     <article key={post.slug} className="landing-main">
       <div className="row post-card">
         <div className="entry-image col-lg-4 col-md-12">
           <div>
-            <img className="lp-default-image" src={post.attributes.thumbnail} />
+            <img
+              className="lp-default-image"
+              src={attributes.featured_image.src}
+              alt={attributes.featured_image.alt}
+              title={attributes.featured_image.title}
+            />
           </div>
         </div>
         <div className="col-lg-8 col-md-12 post-card-header">

@@ -1,5 +1,5 @@
 backend:
-  name: test-repo
+  name: git-gateway
   branch: master
 publish_mode: editorial_workflow
 media_folder: static/img
@@ -34,10 +34,11 @@ collections:
           multiple: true,
           options: ["Code"],
         }
-      - {
-          label: "Featured Image",
-          name: "thumbnail",
-          widget: "image",
-          required: true,
-        }
+      - name: featured_image
+        label: Feature Image
+        widget: object
+        fields:
+          - { name: src, label: Image, widget: image }
+          - { name: alt, label: Alt text, widget: string }
+          - { name: title, label: Title, widget: string }
       - { label: "Body", name: "body", widget: "markdown", required: true }

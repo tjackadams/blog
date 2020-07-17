@@ -1,6 +1,10 @@
 export type Post = {
   attributes: {
-    thumbnail: string;
+    featured_image: {
+      src: string;
+      alt: string;
+      title: string;
+    };
     title: string;
     date: string;
     description: string;

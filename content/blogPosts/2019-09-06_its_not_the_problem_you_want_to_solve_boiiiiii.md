@@ -1,7 +1,12 @@
 ---
 title: A blog post with picture of dog
 date: 2019-09-06T08:28:44.549Z
-thumbnail: /static/img/puppy-and-adult-dog.jpg
+featured_image:
+  {
+    src: /static/img/puppy-and-adult-dog.jpg,
+    alt: A puppy and adult dog,
+    title: A puppy and adult dog,
+  }
 tags: ["Code"]
 ---
 

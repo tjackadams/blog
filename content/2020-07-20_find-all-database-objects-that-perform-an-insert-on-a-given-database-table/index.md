@@ -54,3 +54,53 @@ Lets go through it and see what's happening.
 ```
 
 First we are querying for a list of databases excluding any that are offline or system databases. We store this in a temporary table \`#databases\`.
+
+```sql
+    WHILE (SELECT Count(*)
+           FROM   #databases) > 0
+      BEGIN
+          SELECT TOP 1 @database_id = database_id,
+                       @database_name = database_name,
+                       @quoted_database_name = Quotename(Db_name(CONVERT(
+                                                         NVARCHAR,
+                                                                 database_id)))
+          FROM   #databases
+
+          SET @sql = 'insert into #tbl1 select 
+					quotename(db_name('
+                     + CONVERT(NVARCHAR, @database_id)
+                     + ')),
+					quotename(object_schema_name(d.referencing_id, '
+                     + CONVERT(NVARCHAR, @database_id)
+                     + ')),
+					quotename(object_name(d.referencing_id, '
+                     + CONVERT(NVARCHAR, @database_id) + ')),
+					d.referencing_id,
+					o.type,
+					o.type_desc,
+					max(o.modify_date),
+					max(q.last_execution_time),
+					d.referenced_entity_name
+				from '
+                     + @quoted_database_name + '.sys.sql_expression_dependencies d
+				left join '
+                     + @quoted_database_name + '.sys.objects o on d.referencing_id = o.object_id
+				left join '
+                     + @quoted_database_name
+                     + '.sys.query_store_query q on d.referencing_id = q.object_id
+				where d.referenced_entity_name = '''
+                     + @TargetTable
+                     + '''
+				group by	d.referencing_id,
+							o.type,
+							o.type_desc,
+							d.referenced_entity_name';
+
+          EXEC(@sql)
+
+          DELETE FROM #databases
+          WHERE  database_id = @database_id
+      END;
+```
+
+We then loop through the list of databases

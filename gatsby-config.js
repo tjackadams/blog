@@ -53,6 +53,13 @@ module.exports = {
           },
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-autolink-headers",
+          {
+            resolve: "gatsby-remark-embed-gist",
+            options: {
+              username: "tjackadams",
+              gistDefaultCssInclude: true,
+            },
+          },
           "gatsby-remark-prismjs",
         ],
       },

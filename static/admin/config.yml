@@ -13,7 +13,7 @@ collections:
     label_singular: "Post"
     folder: "content"
     path: "{{slug}}/index"
-    slug: {{year}}-{{month}}-{{day}}_{{slug}}
+    slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
     create: true
     media_folder: ""
     public_folder: ""

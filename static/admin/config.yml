@@ -16,15 +16,13 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { 
-        label: "Cover Image", 
+      - label: "Cover Image", 
         name: "cover", 
         widget: "object", 
         fields: 
           - { label: "Image Source", name: "src", widget: "image"}
           - { label: "Image Alt text", name: "alt", widget: "string" }
           - { label: "Image Title", name: "title", widget: "string" }
-        }
       - {
           label: "Tags",
           name: "tags",

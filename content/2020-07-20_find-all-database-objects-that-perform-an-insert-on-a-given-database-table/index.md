@@ -128,3 +128,7 @@ The stored procedure can be called:
 ```sql
 EXEC dbo.get_crossdatabase_dependencies @TargetTable = 'Account'
 ```
+
+Here is the final script
+
+`gist:tjackadams/e68bce759c199c4a69416f8cd6798fa0#syntax.text`

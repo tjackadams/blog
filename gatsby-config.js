@@ -74,6 +74,7 @@ module.exports = {
       options: {
         printRejected: true,
         develop: true,
+        ignore: ["site.css"],
       },
     },
     "gatsby-plugin-sharp",
@@ -175,9 +176,7 @@ module.exports = {
                     }
                     frontmatter {
                       title
-                      cover
                       date
-                      category
                       tags
                     }
                   }

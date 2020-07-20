@@ -8,4 +8,5 @@ CMS.init({
   },
 });
 
+CMS.registerPreviewStyle("../../node_modules/bootstrap/dist/css/bootstrap.css");
 CMS.registerPreviewStyle("../layout/site.css");

@@ -6,7 +6,6 @@ import { Footer, SocialInfo } from "../components";
 import "./site.css";
 
 const PostLayout = ({ pageTitle, children }) => {
-  console.log("title", pageTitle);
   return (
     <>
       <Helmet bodyAttributes={{ class: "custom-background" }} />

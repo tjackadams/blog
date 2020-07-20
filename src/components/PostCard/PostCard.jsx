@@ -6,8 +6,6 @@ import Image from "../Image/Image";
 import config from "../../../data/SiteConfig";
 
 const PostCard = ({ cover, date, excerpt, path, tags, title }) => {
-  console.log("date", date);
-
   return (
     <article className="landing-main">
       <div className="row post-card">

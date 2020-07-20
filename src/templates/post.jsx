@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
 import { FaGithub } from "react-icons/fa";
+import { parseISO, format } from "date-fns";
 import { PostLayout } from "../layout";
 import config from "../../data/SiteConfig";
 
@@ -36,8 +37,6 @@ const PostTemplate = ({ data, pageContext }) => {
     [post]
   );
 
-  console.log("post", post);
-
   return (
     <PostLayout pageTitle={pageTitle}>
       <article style={{ marginBottom: "20px" }}>
@@ -70,7 +69,7 @@ const PostTemplate = ({ data, pageContext }) => {
                   color: "#616161",
                 }}
               >
-                {post.date}
+                {format(parseISO(post.date), config.dateFormat)}
               </p>
             </div>
             <div dangerouslySetInnerHTML={{ __html: postNode.html }} />

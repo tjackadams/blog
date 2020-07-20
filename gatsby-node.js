@@ -2,7 +2,10 @@
 
 const path = require("path");
 const kebabCase = require("lodash.kebabcase");
-const moment = require("moment");
+const formatISO = require("date-fns/formatISO");
+const parseISO = require("date-fns/parseISO");
+const isValid = require("date-fns/isValid");
+const isBefore = require("date-fns/isBefore");
 const siteConfig = require("./data/SiteConfig");
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -28,11 +31,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, "slug"))
         slug = `/${kebabCase(node.frontmatter.slug)}`;
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, "date")) {
-        const date = moment(node.frontmatter.date, siteConfig.dateFromFormat);
-        if (!date.isValid)
+        const date = parseISO(node.frontmatter.date);
+        if (!isValid(date))
           console.warn(`WARNING: Invalid date.`, node.frontmatter);
 
-        createNodeField({ node, name: "date", value: date.toISOString() });
+        createNodeField({ node, name: "date", value: formatISO(date) });
       }
     }
     createNodeField({ node, name: "slug", value: slug });
@@ -80,18 +83,12 @@ exports.createPages = async ({ graphql, actions }) => {
 
   // Sort posts
   postsEdges.sort((postA, postB) => {
-    const dateA = moment(
-      postA.node.frontmatter.date,
-      siteConfig.dateFromFormat
-    );
+    const dateA = parseISO(postA.node.frontmatter.date);
 
-    const dateB = moment(
-      postB.node.frontmatter.date,
-      siteConfig.dateFromFormat
-    );
+    const dateB = parseISO(postB.node.frontmatter.date);
 
-    if (dateA.isBefore(dateB)) return 1;
-    if (dateB.isBefore(dateA)) return -1;
+    if (isBefore(dateA, dateB)) return 1;
+    if (isBefore(dateB, dateA)) return -1;
 
     return 0;
   });

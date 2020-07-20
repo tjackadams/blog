@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "gatsby";
 import kebabCase from "lodash.kebabcase";
+import { parseISO, format } from "date-fns";
 import Image from "../Image/Image";
 import config from "../../../data/SiteConfig";
 
 const PostCard = ({ cover, date, excerpt, path, tags, title }) => {
+  console.log("date", date);
+
   return (
     <article className="landing-main">
       <div className="row post-card">
@@ -32,7 +35,9 @@ const PostCard = ({ cover, date, excerpt, path, tags, title }) => {
                 </Link>
               </span>
             </span>
-            <span className="entry-post-date">{date}</span>
+            <span className="entry-post-date">
+              {format(parseISO(date), config.dateFormat)}
+            </span>
           </div>
           <p className="land-desc">{excerpt}</p>
         </div>

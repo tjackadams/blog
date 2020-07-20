@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { format, parseISO } from "date-fns";
 import PostCard from "../PostCard/PostCard";
 
 const PostListing = ({ postEdges }) => {
@@ -12,7 +11,7 @@ const PostListing = ({ postEdges }) => {
         tags: post.node.frontmatter.tags,
         cover: post.node.frontmatter.cover,
         title: post.node.frontmatter.title,
-        date: format(parseISO(post.node.fields.date), "MMMM Do, yyyy"),
+        date: post.node.fields.date,
         excerpt: post.node.excerpt,
         timeToRead: post.node.timeToRead,
       };

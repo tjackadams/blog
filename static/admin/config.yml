@@ -14,7 +14,6 @@ collections:
     folder: "content"
     path: "{{slug}}/index"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}.md"
     media_folder: ""
     public_folder: ""
     fields:

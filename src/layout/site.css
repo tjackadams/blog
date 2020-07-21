@@ -212,6 +212,16 @@ h5.entry-title a {
   display: block;
 }
 
+.entry-meta-reading-time {
+  text-transform: uppercase;
+}
+
+.entry-meta-reading-time > .bull {
+  display: inline-block;
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
 .entry-avatar {
   padding-right: 10px;
 }

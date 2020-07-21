@@ -75,6 +75,12 @@ const PostTemplate = ({ data, pageContext }) => {
                 }}
               >
                 {format(parseISO(post.date), config.dateFormat)}
+                &nbsp;
+                <span className="entry-meta-reading-time">
+                  <span className="bull">&bull;</span>
+                  &nbsp;
+                  {postNode.timeToRead} min read
+                </span>
               </p>
             </div>
             <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
@@ -134,6 +140,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      timeToRead
       frontmatter {
         title
         date

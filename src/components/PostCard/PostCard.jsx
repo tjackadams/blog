@@ -36,12 +36,43 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
                   {config.userName}
                 </Link>
               </span>
-            </span>
-            <span className="entry-post-date">
-              {format(parseISO(date), config.dateFormat)}
+              <span className="entry-post-date">
+                {format(parseISO(date), config.dateFormat)}
+              </span>
+              <span className="entry-post-date-short">
+                {format(parseISO(date), config.dateShortFormat)}
+              </span>
+              <span className="entry-post-date-mini">
+                {format(parseISO(date), config.dateFormat)}
+              </span>
             </span>
           </div>
           <p className="land-desc">{description}</p>
+          <div className="entry-meta mobile-view">
+            <span className="entry-avatar">
+              <img
+                src="https://secure.gravatar.com/avatar/1b6126e7eda7d78050b05080b32506b9?s=36&d=mm&r=g"
+                width={36}
+                height={36}
+                alt="Thomas Adams"
+                className="avatar"
+              />
+              <span className="entry-author-link">
+                <Link to="/" title="Posts by Thomas Adams" rel="author">
+                  {config.userName}
+                </Link>
+              </span>
+              <span className="entry-post-date">
+                {format(parseISO(date), config.dateFormat)}
+              </span>
+              <span className="entry-post-date-short">
+                {format(parseISO(date), config.dateShortFormat)}
+              </span>
+              <span className="entry-post-date-mini">
+                {format(parseISO(date), config.dateFormat)}
+              </span>
+            </span>
+          </div>
         </div>
       </div>
       <hr className="tag_separator" />

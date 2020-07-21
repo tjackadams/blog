@@ -16,6 +16,7 @@ const config = {
   disqusShortname: "https-vagr9k-github-io-gatsby-advanced-starter", // Disqus shortname.
   dateFromFormat: "MMMM Do, YYYY", // Date format used in the frontmatter.
   dateFormat: "MMMM do, yyyy", // Date format for display.
+  dateShortFormat: "MMM d, yyyy",
   postsPerPage: 4, // Amount of posts displayed per listing page.
   userName: "Thomas Adams", // Username to display in the author segment.
   userEmail: "AdvancedUser@example.com", // Email used for RSS feed's author segment

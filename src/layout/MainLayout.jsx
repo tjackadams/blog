@@ -40,6 +40,7 @@ const MainLayout = ({ children }) => {
                   tag="div"
                   className="row justify-content-md-center featuresection"
                   fluid={imageData}
+                  id="featuredone"
                 >
                   <div className="inner">
                     <div className="site-nav-right">

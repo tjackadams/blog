@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "gatsby";
 import { Footer, SocialInfo } from "../components";
 
 import "./site.css";
@@ -17,7 +18,13 @@ const PostLayout = ({ pageTitle, children }) => {
               <div className="site-nav-left-wrapper">
                 <div className="site-nav-left">
                   <div className="site-nav-content">
-                    <span className="nav-post-title">{pageTitle}</span>
+                    <div className="nav-post-title-wrapper">
+                      <span className="nav-post-title">
+                        <Link to="/" title="Home">
+                          {pageTitle}
+                        </Link>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -23,11 +23,7 @@ const PostTemplate = ({ data, pageContext }) => {
           document.body.scrollTop > 150 ||
           document.documentElement.scrollTop > 150
         ) {
-          if (post.title.length > 50) {
-            setPageTitle(post.title.substring(0, 50).concat("..."));
-          } else {
-            setPageTitle(post.title);
-          }
+          setPageTitle(post.title);
         } else {
           setPageTitle(config.siteTitle);
         }

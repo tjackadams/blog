@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
 import { FaGithub } from "react-icons/fa";
 import { parseISO, format } from "date-fns";
+import { Helmet } from "react-helmet";
 import { PostLayout } from "../layout";
 import config from "../../data/SiteConfig";
-import { Helmet } from "react-helmet";
 
 const PostTemplate = ({ data, pageContext }) => {
   const { slug } = pageContext;
@@ -42,6 +42,7 @@ const PostTemplate = ({ data, pageContext }) => {
     <PostLayout pageTitle={pageTitle}>
       <Helmet>
         <title>{post.title}</title>
+        <meta name="description" content={post.description} />
       </Helmet>
       <article style={{ marginBottom: "20px" }}>
         <div className="row justify-content-center postcontent">
@@ -136,6 +137,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date
+        description
         tags
       }
       fields {

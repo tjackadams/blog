@@ -12,7 +12,7 @@ const PostListing = ({ postEdges }) => {
         cover: post.node.frontmatter.cover,
         title: post.node.frontmatter.title,
         date: post.node.fields.date,
-        excerpt: post.node.excerpt,
+        description: post.node.frontmatter.description,
         timeToRead: post.node.timeToRead,
       };
     });
@@ -27,7 +27,7 @@ const PostListing = ({ postEdges }) => {
           key={post.title}
           cover={post.cover}
           date={post.date}
-          excerpt={post.excerpt}
+          description={post.description}
           path={post.path}
           tags={post.tags}
           title={post.title}

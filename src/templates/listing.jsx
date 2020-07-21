@@ -90,38 +90,39 @@ export default Listing;
 
 /* eslint no-undef: "off" */
 export const listingQuery = graphql`
-  query ListingQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
-      sort: { fields: [fields___date], order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-            date
-          }
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            tags
-            date
-            cover {
-              alt
-              title
-              src {
-                childImageSharp {
-                  fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+         query ListingQuery($skip: Int!, $limit: Int!) {
+           allMarkdownRemark(
+             sort: { fields: [fields___date], order: DESC }
+             limit: $limit
+             skip: $skip
+           ) {
+             edges {
+               node {
+                 fields {
+                   slug
+                   date
+                 }
+                 excerpt
+                 timeToRead
+                 frontmatter {
+                   title
+                   tags
+                   date
+                   description
+                   cover {
+                     alt
+                     title
+                     src {
+                       childImageSharp {
+                         fluid(maxWidth: 1200) {
+                           ...GatsbyImageSharpFluid_withWebp
+                         }
+                       }
+                     }
+                   }
+                 }
+               }
+             }
+           }
+         }
+       `;

@@ -5,7 +5,7 @@ import { parseISO, format } from "date-fns";
 import Img from "gatsby-image";
 import config from "../../../data/SiteConfig";
 
-const PostCard = ({ cover, date, excerpt, path, tags, title }) => {
+const PostCard = ({ cover, date, description, path, tags, title }) => {
   return (
     <article className="landing-main">
       <div className="row post-card">
@@ -41,7 +41,7 @@ const PostCard = ({ cover, date, excerpt, path, tags, title }) => {
               {format(parseISO(date), config.dateFormat)}
             </span>
           </div>
-          <p className="land-desc">{excerpt}</p>
+          <p className="land-desc">{description}</p>
         </div>
       </div>
       <hr className="tag_separator" />

@@ -45,6 +45,7 @@ export const pageQuery = graphql`
             title
             tags
             date
+            description
             cover {
               alt
               title

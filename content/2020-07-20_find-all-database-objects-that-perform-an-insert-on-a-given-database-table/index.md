@@ -1,5 +1,6 @@
 ---
 title: Find all database objects that perform an insert on a given database table
+description: I explore how we can find all dependencies of a single table in Microsoft SQL Server 2017 across databases that perform an update or insert action.
 date: 2020-07-20T13:21:48.017Z
 cover:
   src: microsoft-sql-server-logo.png

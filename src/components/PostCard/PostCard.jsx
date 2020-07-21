@@ -43,7 +43,7 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
                 {format(parseISO(date), config.dateShortFormat)}
               </span>
               <span className="entry-post-date-mini">
-                {format(parseISO(date), config.dateFormat)}
+                {format(parseISO(date), config.dateMiniFormat)}
               </span>
             </span>
           </div>
@@ -69,7 +69,7 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
                 {format(parseISO(date), config.dateShortFormat)}
               </span>
               <span className="entry-post-date-mini">
-                {format(parseISO(date), config.dateFormat)}
+                {format(parseISO(date), config.dateMiniFormat)}
               </span>
             </span>
           </div>

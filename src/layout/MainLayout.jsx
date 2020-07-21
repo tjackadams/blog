@@ -27,7 +27,9 @@ const MainLayout = ({ children }) => {
 
         return (
           <>
-            <Helmet bodyAttributes={{ class: "custom-background" }} />
+            <Helmet bodyAttributes={{ class: "custom-background" }}>
+              <html lang="en-gb" />
+            </Helmet>
             <div className="container-fluid">
               <div
                 className="wrapper"

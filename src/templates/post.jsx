@@ -4,6 +4,7 @@ import { FaGithub } from "react-icons/fa";
 import { parseISO, format } from "date-fns";
 import { PostLayout } from "../layout";
 import config from "../../data/SiteConfig";
+import { Helmet } from "react-helmet";
 
 const PostTemplate = ({ data, pageContext }) => {
   const { slug } = pageContext;
@@ -39,6 +40,9 @@ const PostTemplate = ({ data, pageContext }) => {
 
   return (
     <PostLayout pageTitle={pageTitle}>
+      <Helmet>
+        <title>{post.title}</title>
+      </Helmet>
       <article style={{ marginBottom: "20px" }}>
         <div className="row justify-content-center postcontent">
           <div className="entry-content col-12">

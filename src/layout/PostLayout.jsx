@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "gatsby";
 import { Footer, SocialInfo } from "../components";
 
 import "./site.css";
@@ -8,7 +7,9 @@ import "./site.css";
 const PostLayout = ({ pageTitle, children }) => {
   return (
     <>
-      <Helmet bodyAttributes={{ class: "custom-background" }} />
+      <Helmet bodyAttributes={{ class: "custom-background" }}>
+        <html lang="en-gb" />
+      </Helmet>
       <nav className="site-header sticky-top">
         <div className="outer site-nav-main">
           <div className="inner">

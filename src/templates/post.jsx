@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby";
 import { FaGithub } from "react-icons/fa";
 import { parseISO, format } from "date-fns";
 import { Helmet } from "react-helmet";
+import kebabcase from "lodash.kebabcase";
 import { PostLayout } from "../layout";
 import config from "../../data/SiteConfig";
 import { SEO } from "../components";
@@ -131,6 +132,17 @@ const PostTemplate = ({ data, pageContext }) => {
             </div>
           </div>
         </div>
+        <footer className="cattagsarea">
+          <span className="tags-links">
+            Tagged
+            {post.tags &&
+              post.tags.map((tag) => (
+                <Link key={tag} to={`/tags/${kebabcase(tag)}`} rel="tag">
+                  {tag}
+                </Link>
+              ))}
+          </span>
+        </footer>
       </article>
     </PostLayout>
   );

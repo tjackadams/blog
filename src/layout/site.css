@@ -312,6 +312,7 @@ h5.entry-title a {
 
 .entry-post-date {
   display: inline;
+  padding-left: 10px;
 }
 
 @media screen and (max-width: 567px) {
@@ -873,4 +874,37 @@ a.next.page-link2 {
   line-height: 24px;
   color: #333;
   word-break: break-word;
+}
+
+.cattagsarea {
+  margin-bottom: 20px;
+  margin-left: -15px;
+  margin-right: -15px;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.cattagsarea .cat-links,
+.cattagsarea .edit-link,
+.cattagsarea .tags-links {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.cat-links a,
+.tags-links a {
+  background-color: #efefef;
+  color: #222;
+  padding: 0.5rem;
+  margin: 5px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.cat-links a:hover,
+.tags-links a:hover {
+  text-decoration: underline;
 }

@@ -25,8 +25,6 @@ const SEO = (props) => {
     image = config.siteLogo;
   }
 
-  console.log("node", postNode);
-
   const getImagePath = (imageURI) => {
     if (
       !imageURI.match(

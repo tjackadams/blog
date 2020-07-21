@@ -5,6 +5,7 @@ import { parseISO, format } from "date-fns";
 import { Helmet } from "react-helmet";
 import { PostLayout } from "../layout";
 import config from "../../data/SiteConfig";
+import { SEO } from "../components";
 
 const PostTemplate = ({ data, pageContext }) => {
   const { slug } = pageContext;
@@ -41,9 +42,9 @@ const PostTemplate = ({ data, pageContext }) => {
   return (
     <PostLayout pageTitle={pageTitle}>
       <Helmet>
-        <title>{post.title}</title>
-        <meta name="description" content={post.description} />
+        <title>{`${post.title} | ${config.siteTitle}`}</title>
       </Helmet>
+      <SEO postPath={slug} postNode={postNode} postSEO />
       <article style={{ marginBottom: "20px" }}>
         <div className="row justify-content-center postcontent">
           <div className="entry-content col-12">
@@ -141,11 +142,19 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       timeToRead
+      excerpt
       frontmatter {
         title
         date
         description
         tags
+        cover {
+          alt
+          title
+          src {
+            publicURL
+          }
+        }
       }
       fields {
         slug

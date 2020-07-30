@@ -65,3 +65,15 @@ Here is what the final code looked like in our \`Startup.cs\`.
 ```csharp
 app.UseWhen((ctx => ctx.Request.Path.Value != "/webchat/agent/available"), ab => ab.UseSession());
 ```
+
+We are telling the application, **if the requested route does not match "/webchat/agent/available" then load the session middleware.** There are other methods available to which can be found on the [official middleware documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1#branch-the-middleware-pipeline).
+
+As the session was not loaded when checking for available support agents, the session was no longer being kept alive and normal behaviour was resumed.
+
+## Conclusion
+
+I feel like this could be a very powerful API and it probably wasn't used in the best sense in this example, but it worked for us. If you liked this post, feel free to leave a comment or share it.
+
+
+
+Happy Coding!

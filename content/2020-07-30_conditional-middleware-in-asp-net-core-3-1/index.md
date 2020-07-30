@@ -35,7 +35,7 @@ The log files didn't really provide anything useful in regards to this, so why a
 
 ## Taking a deeper look
 
-The `IdleTimeout` for the session is a sliding timeout, so in order for the session to not expire after 20 minutes, something must be hitting the application within those 20 minutes, right? So, we did a little experiment. Make a request to the application to initiate a session, wait longer than 20 minutes and see if the session expired. It did not 😥
+The `IdleTimeout` for the session is a sliding timeout, so in order for the session to not expire after 20 minutes, something must be hitting the application within those 20 minutes, right? So, we did a little experiment. Make a request to the application to initiate a session, wait longer than 20 minutes and see if the session expired. Guess what! It did not expire 😥
 
 This is both good and bad. Good that we can reproduce the issue, bad that its not working as intended, *although some people could view it differently* 👀
 

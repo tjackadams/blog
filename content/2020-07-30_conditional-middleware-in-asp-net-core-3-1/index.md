@@ -39,7 +39,7 @@ The \`IdleTimeout\` for the session is a sliding timeout. So in order for the se
 
 This is both good and bad. Good that we can reproduce the issue, bad that its not working as intended, *although some people could view it differently* 👀
 
-We needed some way to track the requests coming into the application to see what what keeping the session alive. Luckily, Serilog has some middleware that can provide [request logging](https://github.com/serilog/serilog-aspnetcore) for us. I won't go into too much detail  on how to setup or configure this, but it basically boils down to this in you \`Startup.cs\`.
+We needed some way to track the requests coming into the application to see what what keeping the session alive. Luckily, Serilog has some middleware that can provide [request logging](https://github.com/serilog/serilog-aspnetcore) for us. I won't go into too much detail  on how to setup or configure this, but it basically boils down to this in your `Startup.cs`.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -60,7 +60,7 @@ Yes, the title of this post finally comes into play, **Conditional Middleware.**
 
 What we can do is load certain middleware for certain routes in our application. What we wanted to achieve is to load the Session middleware for every route, except the route that queries how many support agents are available.
 
-Here is what the final code looked like in our \`Startup.cs\`.
+Here is what the final code looked like in our `Startup.cs`.
 
 ```csharp
 app.UseWhen((ctx => ctx.Request.Path.Value != "/webchat/agent/available"), ab => ab.UseSession());
@@ -73,7 +73,5 @@ As the session was not loaded when checking for available support agents, the se
 ## Conclusion
 
 I feel like this could be a very powerful API and it probably wasn't used in the best sense in this example, but it worked for us. If you liked this post, feel free to leave a comment or share it.
-
-
 
 Happy Coding!

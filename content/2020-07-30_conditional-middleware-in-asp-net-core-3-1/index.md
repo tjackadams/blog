@@ -69,7 +69,7 @@ app.UseWhen(
 );
 ```
 
-We are telling the application, **if the requested route does not match "/webchat/agent/available" then load the session middleware.** There are other methods available to which can be found on the [official middleware documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1#branch-the-middleware-pipeline).
+Here we are instructing the application, **if the requested route does not match "/webchat/agent/available" then load the session middleware.** There are other methods available to which can be found on the [official middleware documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1#branch-the-middleware-pipeline).
 
 As the session was not loaded when checking for available support agents, the session was no longer being kept alive and normal behaviour was resumed.
 

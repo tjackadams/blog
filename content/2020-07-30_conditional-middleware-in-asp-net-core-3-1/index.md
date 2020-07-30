@@ -37,9 +37,9 @@ The log files didn't really provide anything useful in regards to this, so why a
 
 The `IdleTimeout` for the session is a sliding timeout, so in order for the session to not expire after 20 minutes, something must be hitting the application within those 20 minutes, right? So, we did a little experiment. Make a request to the application to initiate a session, wait longer than 20 minutes and see if the session expired. Guess what! It did not expire 😥
 
-This is both good and bad. Good that we can reproduce the issue, bad that its not working as intended, *although some people could view it differently* 👀
+This is both good and bad. **Good** that we can reproduce the issue, **bad** that its not working as intended, *although some people could view it differently* 👀
 
-We needed some way to track the requests coming into the application to see what what keeping the session alive. Luckily, Serilog has some middleware that can provide [request logging](https://github.com/serilog/serilog-aspnetcore) for us. I won't go into too much detail  on how to setup or configure this, but it basically boils down to this in your `Startup.cs`.
+We needed some way to track the requests coming into the application to see what what keeping the session alive. Luckily, Serilog has some middleware that can provide [request logging](https://github.com/serilog/serilog-aspnetcore) for us. I won't go into too much detail  on how to setup or configure this, but it basically boils down to this in your `Startup.cs` (assuming you are using Serilog...).
 
 ```csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -54,16 +54,19 @@ Now let us see what is keeping the session alive!
 
 ## The problem and/or solution
 
-As it turns out, we had recently added a web chat feature to this project. The web chat queried a controller endpoint every 30 seconds or so to see how many support agents were available to service end users. This action kept the session active for the rest of time...but how can we fix it?
+As it turns out, we had recently added a web chat feature to this project. The web chat queried a controller endpoint every 30 seconds or so to see how many support agents were available to help end users. This call kept the session alive for the all of time...but how can we fix it?
 
 Yes, the title of this post finally comes into play, **Conditional Middleware.** I'm not sure if that's the official name, but I'm sticking with it.
 
-What we can do is load certain middleware for certain routes in our application. What we wanted to achieve is to load the Session middleware for every route, except the route that queries how many support agents are available.
+What we can do is load certain middleware for certain routes in our application and what we wanted to achieve was to load the Session middleware for every route, except the route that queries how many support agents there are available.
 
 Here is what the final code looked like in our `Startup.cs`.
 
 ```csharp
-app.UseWhen((ctx => ctx.Request.Path.Value != "/webchat/agent/available"), ab => ab.UseSession());
+app.UseWhen(
+   ctx => ctx.Request.Path.Value != "/webchat/agent/available", 
+   ab => ab.UseSession()
+);
 ```
 
 We are telling the application, **if the requested route does not match "/webchat/agent/available" then load the session middleware.** There are other methods available to which can be found on the [official middleware documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1#branch-the-middleware-pipeline).

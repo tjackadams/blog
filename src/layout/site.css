@@ -185,6 +185,13 @@ p.herotext.text-md-left {
   opacity: 0.8;
 }
 
+@media (max-width: 700px) {
+  .social-link {
+    padding: 14px;
+    font-size: 1.8rem;
+  }
+}
+
 .first-page {
   padding: 30px 0;
 }

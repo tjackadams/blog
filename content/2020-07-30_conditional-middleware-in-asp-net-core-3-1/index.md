@@ -74,4 +74,4 @@ As the session was not loaded when checking for available support agents, the se
 
 I feel like this could be a very powerful API and it probably wasn't used in the best sense in this example, but it worked for us. If you liked this post, feel free to leave a comment or share it.
 
-Happy Coding!
+Hoped you enjoyed the emojis and Happy Coding!

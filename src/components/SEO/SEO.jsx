@@ -6,6 +6,8 @@ import config from "../../../data/SiteConfig";
 
 const SEO = (props) => {
   const { postNode, postPath, postSEO } = props;
+
+  const twitterUsername = config.twitterUsername;
   let title;
   let description;
   let image;
@@ -136,6 +138,7 @@ const SEO = (props) => {
       />
 
       {/* Twitter Card tags */}
+      <meta name="twitter:site" content={twitterUsername} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta
         name="twitter:creator"

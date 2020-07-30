@@ -30,6 +30,7 @@ const config = {
   copyright: `Copyright © ${now.getFullYear()}. tjackadams`, // Copyright string for the footer of the website and RSS feed.
   themeColor: "#005da6;", // Used for setting manifest and progress theme colors.
   backgroundColor: "#f4f4f4;", // Used for setting manifest background color.
+  twitterUsername: "@tjackadams",
 };
 
 // Validate

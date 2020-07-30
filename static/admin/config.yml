@@ -38,6 +38,7 @@ collections:
               { label: "Code", value: "code" },
               { label: "MSSQL", value: "msssql" },
               { label: "C#", value: "csharp" },
+              { label: "ASP.NET Core", value: "aspnetcore" },
             ],
         }
       - { label: "Body", name: "body", widget: "markdown" }

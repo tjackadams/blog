@@ -49,3 +49,19 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     // Other app configuration
 }
 ```
+
+Now let us see what is keeping the session alive!
+
+## The problem and/or solution
+
+As it turns out, we had recently added a web chat feature to this project. The web chat queried a controller endpoint every 30 seconds or so to see how many support agents were available to service end users. This action kept the session active for the rest of time...but how can we fix it?
+
+Yes, the title of this post finally comes into play, **Conditional Middleware.** I'm not sure if that's the official name, but I'm sticking with it.
+
+What we can do is load certain middleware for certain routes in our application. What we wanted to achieve is to load the Session middleware for every route, except the route that queries how many support agents are available.
+
+Here is what the final code looked like in our \`Startup.cs\`.
+
+```csharp
+app.UseWhen((ctx => ctx.Request.Path.Value != "/webchat/agent/available"), ab => ab.UseSession());
+```

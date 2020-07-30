@@ -1,9 +1,9 @@
 const now = new Date();
 
 const config = {
-  siteTitle: "tjackadams blog", // Site title.
+  siteTitle: "tjackadams developer blog", // Site title.
   siteTitleShort: "tjackadams blog", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
-  siteTitleAlt: "tjackadams blog", // Alternative site title for SEO.
+  siteTitleAlt: "tjackadams developer blog", // Alternative site title for SEO.
   siteLogo: "/logos/logo-1024.png", // Logo used for SEO and manifest.
   siteUrl: "https://blog.itadams.co.uk", // Domain of your website without pathPrefix.
   pathPrefix: "/", // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.

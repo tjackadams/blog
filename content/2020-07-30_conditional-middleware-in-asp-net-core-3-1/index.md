@@ -16,7 +16,7 @@ The particular website was built on ASP.NET Core 3.1 👌 running on IIS  🤮 a
 
 ## Let the investigation begin! 🙌
 
-First port of call as always was to check the session was configured correctly. You can find this is the \`Startup.cs\` file.
+First port of call as always was to check the session was configured correctly. You can find this is the `Startup.cs` file.
 
 ```csharp
 services.AddSession(options =>

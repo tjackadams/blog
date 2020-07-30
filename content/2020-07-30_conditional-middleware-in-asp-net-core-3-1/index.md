@@ -11,4 +11,20 @@ tags:
   - code
   - csharp
 ---
-f
+Ah, the good old problem in production that no one saw coming. It was a warm summers day I think, possibly on hump day and we had reports that users sessions were not expiring as they should.\
+The particular website was built on ASP.NET Core 3.1 👌 running on IIS  🤮 and had a relatively short idle session limit set to 20 minutes.
+
+## Let the investigation begin! 🙌
+
+First port of call as always was to check the session was configured correctly. You can find this is the \`Startup.cs\` file.
+
+```csharp
+services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    options.Cookie.IsEssential = true;
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+});
+```

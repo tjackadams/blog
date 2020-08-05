@@ -73,7 +73,7 @@ As you can see, we are instructing the application:
 
 >  **if the requested route matches "/webchat/agent/available" then skip loading the session middleware.**
 
-There are other methods available too and these are found on the [official middleware documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1#branch-the-middleware-pipeline). The result was the check for available agents was no longer keeping the session alive.
+There are other methods available too and these are on the [official middleware documentation](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-3.1#branch-the-middleware-pipeline). The result was the check for available agents was no longer keeping the session alive.
 
 ## Conclusion
 

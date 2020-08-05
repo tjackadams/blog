@@ -13,7 +13,7 @@ const config = {
   siteRssTitle: "tjackadams blog RSS feed", // Title of the RSS feed
   siteFBAppID: "", // FB Application ID for using app insights
   googleAnalyticsID: "UA-173137269-1", // GA tracking ID.
-  disqusShortname: "", // Disqus shortname.
+  disqusShortname: "tjackadams", // Disqus shortname.
   dateFromFormat: "MMMM Do, YYYY", // Date format used in the frontmatter.
   dateFormat: "MMMM do, yyyy", // Date format for display.
   dateShortFormat: "MMM dd, yyyy",

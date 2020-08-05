@@ -361,6 +361,17 @@ h5.entry-title a {
   }
 }
 
+.entry-meta-layout {
+  margin-top: -24px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 1024px) {
+  .entry-meta-layout {
+    margin-bottom: -20px;
+  }
+}
+
 .tag_separator {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -539,15 +550,6 @@ img.avatar {
   font-size: 1.3rem;
 }
 
-.site-nav-right {
-  flex: 0 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 10px 0;
-  height: 64px;
-}
-
 .site-nav-left-wrapper {
   position: relative;
   flex: 1 0 auto;
@@ -569,13 +571,19 @@ img.avatar {
   -ms-overflow-scrolling: touch;
 }
 
+@media (max-width: 520px) {
+  .site-nav-left {
+    justify-content: center;
+  }
+}
+
 .site-nav-content {
   position: relative;
   align-self: flex-start;
 }
 
 .nav-post-title-wrapper {
-  width: 600px;
+  max-width: 640px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -583,7 +591,8 @@ img.avatar {
 
 @media (max-width: 520px) {
   .nav-post-title-wrapper {
-    width: 200px;
+    width: 278px;
+    text-align: center;
   }
 }
 
@@ -594,7 +603,8 @@ img.avatar {
 
 @media (max-width: 520px) {
   .nav-post-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+    text-align: center;
   }
 }
 
@@ -914,4 +924,77 @@ a.next.page-link2 {
 .cat-links a:hover,
 .tags-links a:hover {
   text-decoration: underline;
+}
+
+.social-icon-bar {
+  position: fixed;
+  top: 35%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@media (max-width: 1024px) {
+  .social-icon-bar {
+    display: none;
+  }
+}
+
+.social-icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 5px 15px;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.social-icon-bar .facebook {
+  background: #0078d4;
+  color: 3c3c3c;
+}
+
+.social-icon-bar .facebook:hover {
+  background: #1985d8;
+  color: 3c3c3c;
+}
+
+.social-icon-bar .twitter {
+  background: #0078d4;
+  color: 3c3c3c;
+}
+
+.social-icon-bar .twitter:hover {
+  background: #1985d8;
+  color: 3c3c3c;
+}
+
+.social-icon-bar .linkedin {
+  background: #0078d4;
+  color: 3c3c3c;
+}
+
+.social-icon-bar .linkedin:hover {
+  background: #1985d8;
+  color: 3c3c3c;
+}
+
+.social-icon-bar-mobile {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .social-icon-bar-mobile {
+    display: flex;
+    background-color: inherit;
+  }
+}
+
+@media (max-width: 1024px) {
+  .social-icon-bar-mobile a {
+    display: inline-block;
+    padding: 20px 10px;
+    color: #0078d4;
+    font-size: 18px;
+  }
 }

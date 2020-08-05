@@ -11,12 +11,12 @@ tags:
   - code
   - csharp
 ---
-Ah, the good old problem in production that no one saw coming. It was a warm summers day, possibly on hump day and we had reports that users sessions were not expiring as they should.\
-The particular website is built on ASP.NET Core 3.1 👌 running on IIS  🤮 and has a short idle session limit set to 20 minutes.
+Ah, the good old problem in production that no one saw coming. It was a warm summers day, on hump day I recall and we had reports that users sessions were not expiring as they should.\
+This particular website has been built using ASP.NET Core 3.1 👌 running on IIS  🤮 and has a short idle session limit set to 20 minutes.
 
 ## Let the investigation begin! 🙌
 
-My first port of call as always was to check the session is configured correctly. You can find this is the `Startup.cs` file.
+My first port of call as always was to check the configuration of the session is correct. You can find this is the `Startup.cs` file.
 
 ```csharp
 services.AddSession(options =>
@@ -29,7 +29,7 @@ services.AddSession(options =>
 });
 ```
 
-As you can see the `IdleTimeout` is correctly set to 20 minutes and the rest of the settings are there to please [Chrome against insecure cookies](https://www.chromestatus.com/feature/5633521622188032).
+The `IdleTimeout` is set to 20 minutes as expected.  The other settings are there to please [Chrome against insecure cookies](https://www.chromestatus.com/feature/5633521622188032).
 
 The log files didn't provide anything useful in regards to this, so why are sessions not expiring when they should?
 

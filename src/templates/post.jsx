@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import kebabcase from "lodash.kebabcase";
 import { PostLayout } from "../layout";
 import config from "../../data/SiteConfig";
-import { Disqus, SEO, SocialIconBar } from "../components";
+import { Disqus, ReadNext, SEO, SocialIconBar } from "../components";
 
 const PostTemplate = ({ data, pageContext }) => {
   const { slug } = pageContext;
@@ -153,6 +153,7 @@ const PostTemplate = ({ data, pageContext }) => {
             </span>
           </footer>
         </article>
+        <ReadNext />
         <Disqus postNode={postNode} />
       </PostLayout>
     </>

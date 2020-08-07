@@ -8,9 +8,9 @@ import PostListing from "../components/PostListing/PostListing";
 import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
 
-class Listing extends React.Component {
-  renderPaging() {
-    const { currentPageNum, pageCount } = this.props.pageContext;
+const Listing = (props) => {
+  function renderPaging() {
+    const { currentPageNum, pageCount } = props.pageContext;
     const prevPage = currentPageNum - 1 === 1 ? "/" : `/${currentPageNum - 1}/`;
     const nextPage = `/${currentPageNum + 1}/`;
     const isFirstPage = currentPageNum === 1;
@@ -68,29 +68,27 @@ class Listing extends React.Component {
     );
   }
 
-  render() {
-    const postEdges = this.props.data.allMarkdownRemark.edges;
+  const postEdges = props.data.allMarkdownRemark.edges;
 
-    return (
-      <MainLayout>
-        <Helmet>
-          <title>{config.siteTitle}</title>
-          <meta
-            name="google-site-verification"
-            content="-dh3TAutR78VWqsTlt9useg3t40RPD4G-zYlU2DjIAU"
-          />
-        </Helmet>
-        <SEO />
-        <div className="row first-page">
-          <div className="col-lg-12 col-md-12 col-sm-12 landing-site">
-            {!!postEdges.length && <PostListing postEdges={postEdges} />}
-            {this.renderPaging()}
-          </div>
+  return (
+    <MainLayout>
+      <Helmet>
+        <title>{config.siteTitle}</title>
+        <meta
+          name="google-site-verification"
+          content="-dh3TAutR78VWqsTlt9useg3t40RPD4G-zYlU2DjIAU"
+        />
+      </Helmet>
+      <SEO />
+      <div className="row first-page">
+        <div className="col-lg-12 col-md-12 col-sm-12 landing-site">
+          {!!postEdges.length && <PostListing postEdges={postEdges} />}
+          {renderPaging()}
         </div>
-      </MainLayout>
-    );
-  }
-}
+      </div>
+    </MainLayout>
+  );
+};
 
 export default Listing;
 

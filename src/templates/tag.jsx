@@ -5,24 +5,24 @@ import { MainLayout } from "../layout";
 import PostListing from "../components/PostListing/PostListing";
 import config from "../../data/SiteConfig";
 
-export default class TagTemplate extends React.Component {
-  render() {
-    const { tag } = this.props.pageContext;
-    const postEdges = this.props.data.allMarkdownRemark.edges;
-    return (
-      <MainLayout>
-        <div className="tag-container">
-          <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-          <div className="row first-page">
-            <div className="col-lg-9 col-md-8 col-sm-12 landing-site">
-              <PostListing postEdges={postEdges} />
-            </div>
+const TagTemplate = ({ pageContext, data }) => {
+  const { tag } = pageContext;
+  const postEdges = data.allMarkdownRemark.edges;
+  return (
+    <MainLayout>
+      <div className="tag-container">
+        <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
+        <div className="row first-page">
+          <div className="col-lg-9 col-md-8 col-sm-12 landing-site">
+            <PostListing postEdges={postEdges} />
           </div>
         </div>
-      </MainLayout>
-    );
-  }
-}
+      </div>
+    </MainLayout>
+  );
+};
+
+export default TagTemplate;
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`

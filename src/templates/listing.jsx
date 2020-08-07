@@ -82,7 +82,7 @@ class Listing extends React.Component {
         </Helmet>
         <SEO />
         <div className="row first-page">
-          <div className="col-lg-9 col-md-8 col-sm-12 landing-site">
+          <div className="col-lg-12 col-md-12 col-sm-12 landing-site">
             {!!postEdges.length && <PostListing postEdges={postEdges} />}
             {this.renderPaging()}
           </div>

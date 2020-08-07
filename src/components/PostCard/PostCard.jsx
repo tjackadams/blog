@@ -3,6 +3,8 @@ import { Link } from "gatsby";
 import kebabCase from "lodash.kebabcase";
 import { parseISO, format } from "date-fns";
 import Img from "gatsby-image";
+import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
+import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
 
 const PostCard = ({ cover, date, description, path, tags, title }) => {
@@ -78,7 +80,6 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
       <hr className="tag_separator" />
       <div className="row col-lg-12 cat-section flex-row-reverse">
         <div className="col-lg-8 post-cards-tags-categories">
-          <p className="cat-comments-tags post-comment-count"></p>
           <div className="post-categories-tags">
             {tags &&
               tags.map((tag) => (
@@ -92,7 +93,46 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
               ))}
           </div>
         </div>
-        <div className="col-lg-4 category-name"> </div>
+        <div className="col-lg-4 category-name d-flex flex-row justify-content-around">
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${urljoin(
+              config.siteUrl,
+              config.pathPrefix,
+              path
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="facebook"
+          >
+            <FaFacebookF />
+          </a>
+
+          <a
+            href={`https://twitter.com/intent/tweet?url=${urljoin(
+              config.siteUrl,
+              config.pathPrefix,
+              path
+            )}&text=${title}`}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="twitter"
+          >
+            <FaTwitter />
+          </a>
+
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${urljoin(
+              config.siteUrl,
+              config.pathPrefix,
+              path
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            className="linkedin"
+          >
+            <FaLinkedinIn />
+          </a>
+        </div>
       </div>
     </article>
   );

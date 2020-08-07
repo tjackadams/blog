@@ -1071,3 +1071,9 @@ a.next.page-link2 {
   color: #005da6;
   font-weight: 700;
 }
+
+.share-link {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+}

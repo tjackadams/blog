@@ -11,3 +11,5 @@ tags:
 ---
 In this post we'll explore how we can seed data into Azure Table Storage using bicep deployment scripts.
 
+
+

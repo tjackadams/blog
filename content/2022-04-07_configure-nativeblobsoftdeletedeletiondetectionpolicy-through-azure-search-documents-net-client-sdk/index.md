@@ -62,3 +62,16 @@ public class NativeBlobSoftDeleteDeletionDetectionPolicy : HttpPipelinePolicy
     }
 }
 ```
+
+I write the request content to a memory stream. Then I parse that into a JsonNode (System.Text.Json) object - this allows me to mutate the DOM. I add the required Json property and write the content back to the request. Then I can register the `HttpPipelinePolicy` like so
+
+```csharp
+var options = new SearchClientOptions();
+options.AddPolicy(new NativeBlobSoftDeleteDeletionDetectionPolicy(), HttpPipelinePosition.PerCall);
+var searchIndexerClient = new SearchIndexerClient(new Uri(_settings.SearchEndpoint), new AzureKeyCredential(_settings.SearchKey), options);
+```
+
+I'm sure there are many improvements that can be made to the `HttpPipelinePolicy` code, but this is only being used to help with deployments so performance isn't overly critical...and it works.
+If you have any improvements, let me know in the comments.
+
+Happy Coding!

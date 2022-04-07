@@ -6,7 +6,7 @@ description: Configure NativeBlobSoftDeleteDeletionDetectionPolicy through
   data sources within the Azure Search Service.
 date: 2022-04-07T12:11:04.671Z
 cover:
-  src: cognitive-services.svg
+  src: cognitive-services.jpg
   alt: Azure Cognitive Services
   title: Azure Cognitive Services
 tags:

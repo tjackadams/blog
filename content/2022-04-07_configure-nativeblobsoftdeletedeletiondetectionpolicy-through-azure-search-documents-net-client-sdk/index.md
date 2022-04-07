@@ -28,7 +28,7 @@ The option looks like this in the Azure portal under the data source options.
 
 I couldn't find this option anywhere in .NET SDK. After a lot of researching and looking for answers, I came across this GitHub issue [\#11435](https://github.com/Azure/azure-sdk-for-net/issues/11435). My understanding is that they don't have the resources to put towards a product that is currently in preview. The option is available through the [rest api](https://docs.microsoft.com/en-us/azure/search/search-howto-index-changed-deleted-blobs#how-to-configure-deletion-detection-using-native-soft-delete), so maybe I could alter the outgoing .NET SDK request and add the dataDeletionDetectionPolicy to the JSON body. Well, it is possible and here is the code.
 
-```
+```csharp
 public class NativeBlobSoftDeleteDeletionDetectionPolicy : HttpPipelinePolicy
 {
     public override void Process(HttpMessage message, ReadOnlyMemory<HttpPipelinePolicy> pipeline)

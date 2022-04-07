@@ -50,26 +50,92 @@ samp {
 body pre,
 body pre.prettyprint,
 body pre.prettyprinted {
-  background-color: #f0f0f0 !important;
+  background-color: #1e1e1e !important;
   padding: 10px !important;
   border-radius: 10px;
   border: 0 !important;
 }
 
-pre code {
-  font-size: inherit;
-  color: inherit;
-  word-break: normal;
+code[class*="language-"] {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  color: #dcdcda;
 }
 
-code {
+.token.punctuation {
+  color: #dcdcda;
+}
+
+.token.comment {
+  color: #23a658;
+}
+
+.token.string {
+  color: #ea9d78;
+}
+
+.token.function {
+  color: #a0d7a7;
+}
+
+.token.class-name {
+  color: #13c9c6;
+}
+
+.token.doctype,
+.token.prolog {
+  color: #13c9c6;
+}
+
+.token.keyword {
+  color: #439ce2;
+}
+
+.token.preprocessor.property {
+  color: #9b9b99;
+}
+.token.preprocessor.property .keyword {
+  color: #9b9b99;
+}
+
+.token.selector {
+  color: #d8ba76;
+}
+
+.token.atrule {
+  color: #439ce2;
+}
+
+.token.tag {
+  color: #439ce2;
+}
+
+.token.attr-name {
+  color: #87dcff;
+}
+
+.token.attr-value {
+  color: #c8c8c6;
+}
+
+code[class*="language-css"] {
+  color: #c8c8c6;
+}
+code[class*="language-css"] .token.property {
+  color: #67dcff;
+}
+code[class*="language-css"] .token.string {
+  color: #c8c8c6;
+}
+
+code[class*="language-markup"] .token.punctuation {
+  color: #80807f;
+}
+
+code[class*="language-text"] {
   font-size: 87.5%;
   color: #dc3545;
   word-break: break-word;
-}
-
-code {
-  color: #c00;
 }
 
 dl,

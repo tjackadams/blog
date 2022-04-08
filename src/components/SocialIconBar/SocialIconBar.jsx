@@ -3,14 +3,12 @@ import { Location } from "@reach/router";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const SocialIconBar = ({ title }) => {
-  const currentUrl = location.href;
-
   return (
     <Location>
       {({ location }) => (
         <>
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${location.href}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="facebook"
@@ -18,7 +16,7 @@ const SocialIconBar = ({ title }) => {
             <FaFacebookF />
           </a>
           <a
-            href={`https://twitter.com/intent/tweet?url=${currentUrl}&text=${title}`}
+            href={`https://twitter.com/intent/tweet?url=${location.href}&text=${title}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="twitter"
@@ -26,7 +24,7 @@ const SocialIconBar = ({ title }) => {
             <FaTwitter />
           </a>
           <a
-            href={`https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}`}
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${location.href}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="linkedin"

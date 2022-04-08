@@ -11,7 +11,7 @@ const config = {
     "My personal blog. I figured it was better to start writing things down rather than forgetting them later. Maybe you'll find it useful.", // Website description used for RSS feeds/meta description tag.
   siteRss: "/rss.xml", // Path to the RSS file.
   siteRssTitle: "tjackadams blog RSS feed", // Title of the RSS feed
-  googleAnalyticsID: "UA-173137269-1", // GA tracking ID.
+  googleAnalyticsID: "G-S14YL6K5R1", // GA tracking ID.
   disqusShortname: "tjackadams", // Disqus shortname.
   dateFromFormat: "MMMM Do, YYYY", // Date format used in the frontmatter.
   dateFormat: "MMMM do, yyyy", // Date format for display.

@@ -5,9 +5,14 @@ import { parseISO, format } from "date-fns";
 import Img from "gatsby-image";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import urljoin from "url-join";
+import urlHelper from "../../shared/urlHelper";
 import config from "../../../data/SiteConfig";
 
 const PostCard = ({ cover, date, description, path, tags, title }) => {
+  const sharingUrl = urlHelper.addTrailingSlash(
+    urljoin(config.siteUrl, config.pathPrefix, path)
+  );
+
   return (
     <article className="landing-main">
       <div className="row post-card">
@@ -95,11 +100,7 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
         </div>
         <div className="col-lg-4 category-name d-flex flex-row justify-content-around">
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=${urljoin(
-              config.siteUrl,
-              config.pathPrefix,
-              path
-            )}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=${sharingUrl}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="facebook"
@@ -108,11 +109,7 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
           </a>
 
           <a
-            href={`https://twitter.com/intent/tweet?url=${urljoin(
-              config.siteUrl,
-              config.pathPrefix,
-              path
-            )}&text=${title}`}
+            href={`https://twitter.com/intent/tweet?url=${sharingUrl}&text=${title}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="twitter"
@@ -121,11 +118,7 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
           </a>
 
           <a
-            href={`https://www.linkedin.com/shareArticle?mini=true&url=${urljoin(
-              config.siteUrl,
-              config.pathPrefix,
-              path
-            )}`}
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${sharingUrl}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="linkedin"

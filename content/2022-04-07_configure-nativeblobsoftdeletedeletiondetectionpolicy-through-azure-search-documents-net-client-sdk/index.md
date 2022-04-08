@@ -27,9 +27,9 @@ The option looks like this in the Azure portal under the data source options.
 
 ![Azure Search Blob Storage Data Source Track Deletion Options](azure_search_blob_storage_data_source_track_deletion_options.jpg "Azure Search Blob Storage Data Source Track Deletion Options")
 
-I couldn't find this option available anywhere in [.NET SDK](https://github.com/Azure/azure-sdk-for-net). 
+I couldn't find this option available anywhere in [.NET SDK](https://github.com/Azure/azure-sdk-for-net).
 
-After a lot of researching and looking for answers, I came across this GitHub issue [\#11435](https://github.com/Azure/azure-sdk-for-net/issues/11435). My understanding is that they don't have the resources to put towards a product that is currently in preview. 
+After a lot of researching and looking for answers, I came across this GitHub issue [\#11435](https://github.com/Azure/azure-sdk-for-net/issues/11435). My understanding is that they don't have the resources to put towards a product that is currently in preview.
 
 The option is available through the [Azure REST API](https://docs.microsoft.com/en-us/azure/search/search-howto-index-changed-deleted-blobs#how-to-configure-deletion-detection-using-native-soft-delete), so I decided that if I could alter the outgoing request made from the `SearchIndexerClient`, I can add the required property into the request body and replicate the Azure REST API.
 
@@ -76,9 +76,17 @@ I can register the `HttpPipelinePolicy` like this
 
 ```csharp
 var options = new SearchClientOptions();
-options.AddPolicy(new NativeBlobSoftDeleteDeletionDetectionPolicy(), HttpPipelinePosition.PerCall);
-var searchIndexerClient = new SearchIndexerClient(new Uri(_settings.SearchEndpoint), new AzureKeyCredential(_settings.SearchKey),
- options);
+
+options.AddPolicy(
+  new NativeBlobSoftDeleteDeletionDetectionPolicy(), 
+  HttpPipelinePosition.PerCall
+);
+
+var searchIndexerClient = new SearchIndexerClient(
+  new Uri(_settings.SearchEndpoint), 
+  new AzureKeyCredential(_settings.SearchKey),
+  options
+);
 ```
 
 It's not the prettiest of code samples and I'm not sure how I would feel about this in a production application, but I am only using this tool for deployments - it doesn't have to be perfect. 

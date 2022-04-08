@@ -5,13 +5,10 @@ import { parseISO, format } from "date-fns";
 import Img from "gatsby-image";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import urljoin from "url-join";
-import urlHelper from "../../shared/urlHelper";
 import config from "../../../data/SiteConfig";
 
 const PostCard = ({ cover, date, description, path, tags, title }) => {
-  const sharingUrl = urlHelper.addTrailingSlash(
-    urljoin(config.siteUrl, config.pathPrefix, path)
-  );
+  const sharingUrl = urljoin(config.siteUrl, config.pathPrefix, path);
 
   return (
     <article className="landing-main">

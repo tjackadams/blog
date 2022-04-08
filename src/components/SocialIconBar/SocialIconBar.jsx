@@ -1,10 +1,9 @@
 import React from "react";
 import { Location } from "@reach/router";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import urlHelper from "../../shared/urlHelper";
 
 const SocialIconBar = ({ title }) => {
-  const currentUrl = urlHelper.addTrailingSlash(location.href);
+  const currentUrl = Location.href;
 
   return (
     <Location>

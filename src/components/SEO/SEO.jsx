@@ -2,7 +2,6 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import urljoin from "url-join";
 import { parseISO, toDate } from "date-fns";
-import urlHelper from "../../shared/urlHelper";
 import config from "../../../data/SiteConfig";
 
 const SEO = (props) => {
@@ -21,9 +20,7 @@ const SEO = (props) => {
       ? postMeta.description
       : postNode.excerpt;
     image = postMeta.cover.src.publicURL;
-    postURL = urlHelper.addTrailingSlash(
-      urljoin(config.siteUrl, config.pathPrefix, postPath)
-    );
+    postURL = urljoin(config.siteUrl, config.pathPrefix, postPath);
   } else {
     title = config.siteTitle;
     description = config.siteDescription;
@@ -67,9 +64,8 @@ const SEO = (props) => {
     url: getImagePath(config.siteLogo),
   };
 
-  const blogURL = urlHelper.addTrailingSlash(
-    urljoin(config.siteUrl, config.pathPrefix)
-  );
+  const blogURL = urljoin(config.siteUrl, config.pathPrefix);
+
   const schemaOrgJSONLD = [
     {
       "@context": "http://schema.org",

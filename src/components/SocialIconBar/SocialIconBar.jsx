@@ -3,7 +3,7 @@ import { Location } from "@reach/router";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const SocialIconBar = ({ title }) => {
-  const currentUrl = Location.href;
+  const currentUrl = location.href;
 
   return (
     <Location>

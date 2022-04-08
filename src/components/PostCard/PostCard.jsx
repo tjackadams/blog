@@ -7,8 +7,14 @@ import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
 
+function ensureTrailingSlash(url) {
+  return url.endsWith("/") ? url : url + "/";
+}
+
 const PostCard = ({ cover, date, description, path, tags, title }) => {
-  const sharingUrl = urljoin(config.siteUrl, config.pathPrefix, path);
+  const sharingUrl = ensureTrailingSlash(
+    urljoin(config.siteUrl, config.pathPrefix, path)
+  );
 
   return (
     <article className="landing-main">

@@ -35,7 +35,7 @@ collections:
           multiple: true,
           options:
             [
-              { label: "Code", value: "code" },
+              { label: "Azure", value: "azure" },
               { label: "MSSQL", value: "msssql" },
               { label: "C#", value: "csharp" },
               { label: "ASP.NET Core", value: "aspnetcore" },

@@ -8,8 +8,8 @@ cover:
   alt: ASP.NET Core Middleware Pipeline
   title: ASP.NET Core Middleware Pipeline
 tags:
-  - code
   - csharp
+  - aspnetcore
 ---
 Ah, the good old problem in production that no one saw coming. It was a warm summers day, on hump day I recall and we had reports that users sessions were not expiring as they should.\
 This particular website has been built using ASP.NET Core 3.1 👌 running on IIS  🤮 and has a short idle session limit set to 20 minutes.

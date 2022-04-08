@@ -11,6 +11,7 @@ cover:
   title: Azure Cognitive Services
 tags:
   - csharp
+  - azure
 ---
 There are certain [conditions](https://docs.microsoft.com/en-us/azure/search/search-howto-reindex#rebuild-conditions) that will require a drop and rebuild of the index. I have recently been investigating ways that this could be achieved as part of the deployment pipeline.
 
@@ -76,7 +77,8 @@ I can register the `HttpPipelinePolicy` like this
 ```csharp
 var options = new SearchClientOptions();
 options.AddPolicy(new NativeBlobSoftDeleteDeletionDetectionPolicy(), HttpPipelinePosition.PerCall);
-var searchIndexerClient = new SearchIndexerClient(new Uri(_settings.SearchEndpoint), new AzureKeyCredential(_settings.SearchKey), options);
+var searchIndexerClient = new SearchIndexerClient(new Uri(_settings.SearchEndpoint), new AzureKeyCredential(_settings.SearchKey),
+ options);
 ```
 
 It's not the prettiest of code samples and I'm not sure how I would feel about this in a production application, but I am only using this tool for deployments - it doesn't have to be perfect. 

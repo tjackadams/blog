@@ -1,77 +1,34 @@
 {
-  "name": "tjackadams-blog",
+  "name": "blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "blog",
+  "author": "Thomas Adams",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
   "dependencies": {
-    "bootstrap": "^4.5.1",
-    "classnames": "^2.3.1",
-    "date-fns": "^2.28.0",
-    "disqus-react": "^1.1.2",
     "gatsby": "^4.11.2",
-    "gatsby-background-image": "^1.6.0",
-    "gatsby-codemods": "^3.11.0",
-    "gatsby-plugin-catch-links": "^4.11.0",
-    "gatsby-plugin-feed": "^4.11.1",
     "gatsby-plugin-google-analytics": "^4.11.0",
     "gatsby-plugin-image": "^2.11.1",
     "gatsby-plugin-manifest": "^4.11.1",
     "gatsby-plugin-netlify-cms": "^6.11.0",
-    "gatsby-plugin-nprogress": "^4.11.0",
-    "gatsby-plugin-offline": "^5.11.1",
-    "gatsby-plugin-purgecss": "^6.1.2",
     "gatsby-plugin-react-helmet": "^5.11.0",
     "gatsby-plugin-sharp": "^4.11.1",
     "gatsby-plugin-sitemap": "^5.11.1",
-    "gatsby-plugin-twitter": "^4.11.1",
-    "gatsby-remark-autolink-headers": "^5.11.1",
-    "gatsby-remark-copy-linked-files": "^5.11.0",
-    "gatsby-remark-embed-gist": "^1.2.1",
-    "gatsby-remark-images": "^6.11.1",
-    "gatsby-remark-prismjs": "^6.11.0",
-    "gatsby-remark-relative-images": "^2.0.2",
-    "gatsby-remark-responsive-iframe": "^5.11.0",
     "gatsby-source-filesystem": "^4.11.1",
     "gatsby-transformer-remark": "^5.11.1",
     "gatsby-transformer-sharp": "^4.11.0",
-    "lodash.kebabcase": "^4.1.1",
     "netlify-cms-app": "^2.15.70",
-    "prismjs": "^1.27.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^4.3.1",
-    "url-join": "^5.0.0"
-  },
-  "devDependencies": {
-    "cli-glob": "^0.1.0",
-    "eslint": "^8.13.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.29.4",
-    "gh-pages": "^3.2.3",
-    "prettier": "^2.6.2",
-    "remark-cli": "^10.0.1",
-    "remark-preset-lint-recommended": "^6.1.2",
-    "stylelint": "^14.6.1",
-    "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^25.0.0",
-    "write-good": "^1.0.8"
-  },
-  "scripts": {
-    "develop": "gatsby develop",
-    "dev": "npm run develop",
-    "serve": "gatsby serve",
-    "build": "gatsby build",
-    "clean": "rm -rf public && rm -rf .cache",
-    "lint:js": "eslint --ext .js,.jsx .",
-    "lint:md": "remark content/",
-    "write-good": "write-good $(glob 'content/posts/**/*.md')",
-    "format:js": "prettier '**/*.{js,jsx}' --write",
-    "format:styles": "prettier '**/*.{css,scss}' --write"
-  },
-  "remarkConfig": {
-    "plugins": [
-      "remark-preset-lint-recommended"
-    ]
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0"
   }
 }

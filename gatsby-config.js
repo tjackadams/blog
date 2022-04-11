@@ -20,7 +20,6 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-lodash",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -85,6 +84,7 @@ module.exports = {
         ignore: ["site.css"],
       },
     },
+    "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-catch-links",

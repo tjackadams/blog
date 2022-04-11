@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import kebabCase from "lodash.kebabcase";
 import { parseISO, format } from "date-fns";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
@@ -20,11 +20,10 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
     <article className="landing-main">
       <div className="row post-card">
         <div className="entry-image col-lg-4 col-md-12">
-          <Img
-            fluid={cover.src.childImageSharp.fluid}
+          <GatsbyImage
+            image={cover.src.childImageSharp.gatsbyImageData}
             alt={cover.alt}
-            title={cover.title}
-          />
+            title={cover.title} />
         </div>
         <div className="col-lg-8 col-md-12 post-card-header">
           <h5 className="entry-title">

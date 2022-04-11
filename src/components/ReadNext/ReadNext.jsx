@@ -6,38 +6,32 @@ import config from "../../../data/SiteConfig";
 const ReadNext = () => {
   return (
     <StaticQuery
-      query={graphql`
-        query {
-          allMarkdownRemark(
-            limit: 2
-            sort: { order: DESC, fields: frontmatter___date }
-          ) {
-            edges {
-              node {
-                frontmatter {
-                  title
-                  description
-                  date
-                  cover {
-                    alt
-                    title
-                    src {
-                      childImageSharp {
-                        fluid(maxWidth: 1200) {
-                          ...GatsbyImageSharpFluid_withWebp
-                        }
-                      }
-                    }
-                  }
-                }
-                fields {
-                  slug
-                }
+      query={graphql`{
+  allMarkdownRemark(limit: 2, sort: {order: DESC, fields: frontmatter___date}) {
+    edges {
+      node {
+        frontmatter {
+          title
+          description
+          date
+          cover {
+            alt
+            title
+            src {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }
         }
-      `}
+        fields {
+          slug
+        }
+      }
+    }
+  }
+}
+`}
       render={(data) => {
         return (
           <div className="related-postssection">

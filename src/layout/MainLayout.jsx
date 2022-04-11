@@ -11,19 +11,16 @@ import "./site.css";
 const MainLayout = ({ children }) => {
   return (
     <StaticQuery
-      query={graphql`
-        query {
-          desktop: file(relativePath: { eq: "assets/header.png" }) {
-            childImageSharp {
-              fluid(quality: 90, maxWidth: 1920) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-      `}
+      query={graphql`{
+  desktop: file(relativePath: {eq: "assets/header.png"}) {
+    childImageSharp {
+      gatsbyImageData(quality: 90, layout: FULL_WIDTH)
+    }
+  }
+}
+`}
       render={(data) => {
-        const imageData = data.desktop.childImageSharp.fluid;
+        const imageData = data.desktop.childImageSharp.gatsbyImageData;
 
         return (
           <>

@@ -25,36 +25,32 @@ const TagTemplate = ({ pageContext, data }) => {
 export default TagTemplate;
 
 /* eslint no-undef: "off" */
-export const pageQuery = graphql`
-  query TagPage($tag: String) {
-    allMarkdownRemark(
-      limit: 1000
-      sort: { fields: [fields___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          fields {
-            slug
-            date
-          }
-          excerpt
-          timeToRead
-          frontmatter {
+export const pageQuery = graphql`query TagPage($tag: String) {
+  allMarkdownRemark(
+    limit: 1000
+    sort: {fields: [fields___date], order: DESC}
+    filter: {frontmatter: {tags: {in: [$tag]}}}
+  ) {
+    totalCount
+    edges {
+      node {
+        fields {
+          slug
+          date
+        }
+        excerpt
+        timeToRead
+        frontmatter {
+          title
+          tags
+          date
+          description
+          cover {
+            alt
             title
-            tags
-            date
-            description
-            cover {
-              alt
-              title
-              src {
-                childImageSharp {
-                  fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-                }
+            src {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }
@@ -62,4 +58,5 @@ export const pageQuery = graphql`
       }
     }
   }
+}
 `;

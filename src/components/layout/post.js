@@ -35,8 +35,8 @@ const PostLayout = ({ pageTitle, children }) => {
       <div>
         <div className="wrapper">
           <div className="container" tabIndex={-1}>
-            <div className="row">
-              <div className="col-md content-area">
+            <div className="row justify-content-center">
+              <div className="col-12 col-md-10 content-area">
                 <main className="site-main">{children}</main>
               </div>
             </div>

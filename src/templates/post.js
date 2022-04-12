@@ -1,5 +1,6 @@
 import { format, parseISO } from "date-fns";
 import { graphql, Link } from "gatsby";
+import { GatsbySeo } from "gatsby-plugin-next-seo";
 import kebabcase from "lodash.kebabcase";
 import React, { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
@@ -38,8 +39,34 @@ const PostPage = ({ data, pageContext }) => {
     };
   }, [post]);
 
+  const coverImage = post.cover.src.childrenImageSharp[0];
+
   return (
     <>
+      <GatsbySeo
+        title={post.title}
+        description={post.description}
+        openGraph={{
+          title: post.title,
+          description: post.description ? post.description : post.excerpt,
+          url: new URL(slug, config.siteUrl).toString(),
+          type: "article",
+          article: {
+            publishedTime: post.date,
+            authors: [config.userName],
+            tags: post.tags,
+          },
+          images: [
+            {
+              alt: post.cover.alt,
+              url: post.cover.src.publicURL,
+              width: coverImage.original.width,
+              height: coverImage.original.height,
+            },
+          ],
+        }}
+      />
+
       <div className="social-icon-bar">
         <SocialIconBar title={post.title} />
       </div>
@@ -177,6 +204,12 @@ export const pageQuery = graphql`
           title
           src {
             publicURL
+            childrenImageSharp {
+              original {
+                width
+                height
+              }
+            }
           }
         }
       }

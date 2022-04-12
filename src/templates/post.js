@@ -4,6 +4,7 @@ import kebabcase from "lodash.kebabcase";
 import React, { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import config from "../../data/SiteConfig";
+import Disqus from "../components/disqus/disqus";
 import PostLayout from "../components/layout/post";
 import ReadNext from "../components/readNext/readNext";
 import SocialIconBar from "../components/socialIconBar/socialIconBar";
@@ -134,23 +135,27 @@ const PostPage = ({ data, pageContext }) => {
               </div>
             </div>
           </div>
-          <footer className="cattagsarea">
-            <span className="tags-links">
-              Tagged
-              {post.tags &&
-                post.tags.map((tag) => (
-                  <Link key={tag} to={`/tags/${kebabcase(tag)}`} rel="tag">
-                    {tag}
-                  </Link>
-                ))}
-            </span>
+          <footer className="row cattagsarea">
+            <div className="col-12">
+              <span className="tags-links">
+                Tagged
+                {post.tags &&
+                  post.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      to={`/tags/${kebabcase(tag)}`}
+                      rel="tag"
+                      className="ms-2"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+              </span>
+            </div>
           </footer>
         </article>
         <ReadNext />
-        {/*
         <Disqus postNode={postNode} />
-             
-      */}
       </PostLayout>
     </>
   );

@@ -9,7 +9,7 @@ import MainLayout from "../components/layout/main";
 import PostListing from "../components/postListing/postListing";
 
 const IndexPage = ({ data, pageContext }) => {
-  const postEdges = data.allMarkdownRemark.edges;
+  const posts = data.allMarkdownRemark.edges;
 
   return (
     <>
@@ -27,7 +27,6 @@ const IndexPage = ({ data, pageContext }) => {
       />
       <MainLayout>
         <Helmet>
-          <title>{config.siteTitle}</title>
           <meta
             name="google-site-verification"
             content="-dh3TAutR78VWqsTlt9useg3t40RPD4G-zYlU2DjIAU"
@@ -35,7 +34,7 @@ const IndexPage = ({ data, pageContext }) => {
         </Helmet>
         <div className="row first-page">
           <div className="col-lg-12 col-md-12 col-sm-12 landing-site">
-            {!!postEdges.length && <PostListing postEdges={postEdges} />}
+            {!!posts.length && <PostListing postEdges={posts} />}
             {renderPaging(pageContext)}
           </div>
         </div>
@@ -43,14 +42,6 @@ const IndexPage = ({ data, pageContext }) => {
     </>
   );
 };
-
-// IndexPage.propTypes = {
-//   data: PropTypes.shape({
-//     allMarkdownRemark: PropTypes.shape({
-//       edges: PropTypes.array(),
-//     }),
-//   }),
-// };
 
 export default IndexPage;
 
@@ -116,7 +107,7 @@ const renderPaging = (pageContext) => {
 export const query = graphql`
   query HomePageQuery($skip: Int!, $limit: Int!) {
     allMarkdownRemark(
-      sort: { fields: [fields___date], order: DESC }
+      sort: { fields: [frontmatter___date], order: DESC }
       limit: $limit
       skip: $skip
     ) {
@@ -124,7 +115,6 @@ export const query = graphql`
         node {
           fields {
             slug
-            date
           }
           excerpt
           timeToRead

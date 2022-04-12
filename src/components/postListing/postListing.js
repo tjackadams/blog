@@ -11,7 +11,7 @@ const PostListing = ({ postEdges }) => {
         tags: post.node.frontmatter.tags,
         cover: post.node.frontmatter.cover,
         title: post.node.frontmatter.title,
-        date: post.node.fields.date,
+        date: post.node.frontmatter.date,
         description: post.node.frontmatter.description,
         timeToRead: post.node.timeToRead,
       };
@@ -36,9 +36,5 @@ const PostListing = ({ postEdges }) => {
     </>
   );
 };
-
-// PostListing.propTypes = {
-//   postEdges: PropTypes.array(),
-// };
 
 export default PostListing;

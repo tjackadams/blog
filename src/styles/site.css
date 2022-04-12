@@ -486,6 +486,10 @@ a.post-tags {
   text-decoration: none;
 }
 
+a.post-tags:hover {
+  text-decoration: underline;
+}
+
 .post-categories-tags {
   display: inline-block;
   vertical-align: middle;

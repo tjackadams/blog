@@ -1,9 +1,5 @@
 const path = require("path");
 const kebabCase = require("lodash.kebabcase");
-const formatISO = require("date-fns/formatISO");
-const parseISO = require("date-fns/parseISO");
-const isValid = require("date-fns/isValid");
-const isBefore = require("date-fns/isBefore");
 const siteConfig = require("./data/SiteConfig");
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -28,13 +24,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     if (Object.prototype.hasOwnProperty.call(node, "frontmatter")) {
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, "slug"))
         slug = `/${kebabCase(node.frontmatter.slug)}`;
-      if (Object.prototype.hasOwnProperty.call(node.frontmatter, "date")) {
-        const date = parseISO(node.frontmatter.date);
-        if (!isValid(date))
-          console.warn(`WARNING: Invalid date.`, node.frontmatter);
-
-        createNodeField({ node, name: "date", value: formatISO(date) });
-      }
     }
     createNodeField({ node, name: "slug", value: slug });
   }
@@ -56,14 +45,13 @@ exports.createPages = async ({ graphql, actions }) => {
   const markdownQueryResult = await graphql(`
     {
       allMarkdownRemark(
-        sort: { fields: [fields___date], order: DESC }
+        sort: { fields: [frontmatter___date], order: DESC }
         limit: 1000
       ) {
         edges {
           node {
             fields {
               slug
-              date
             }
             frontmatter {
               title
@@ -84,18 +72,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagSet = new Set();
 
   const posts = markdownQueryResult.data.allMarkdownRemark.edges;
-
-  // Sort posts
-  posts.sort((postA, postB) => {
-    const dateA = parseISO(postA.node.frontmatter.date);
-
-    const dateB = parseISO(postB.node.frontmatter.date);
-
-    if (isBefore(dateA, dateB)) return 1;
-    if (isBefore(dateB, dateA)) return -1;
-
-    return 0;
-  });
 
   // Paging
   const { postsPerPage } = siteConfig;

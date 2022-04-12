@@ -28,7 +28,7 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
           <div className="entry-meta desktop-view">
             <span className="entry-avatar">
               <img
-                src="https://secure.gravatar.com/avatar/1b6126e7eda7d78050b05080b32506b9?s=36&d=mm&r=g"
+                src="https://secure.gravatar.com/avatar/1b6126e7eda7d78050b05080b32506b9?s=72&d=mm&r=g"
                 width={36}
                 height={36}
                 alt="Thomas Adams"

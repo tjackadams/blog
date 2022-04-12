@@ -10,7 +10,7 @@ module.exports = {
       resolve: "gatsby-plugin-next-seo",
       options: {
         description: config.siteDescription,
-        language: "en_GB",
+        language: "en-GB",
         titleTemplate: `%s | ${config.siteTitle}`,
         title: "home",
         openGraph: {

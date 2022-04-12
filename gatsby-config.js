@@ -2,8 +2,7 @@ const config = require("./data/SiteConfig");
 
 module.exports = {
   siteMetadata: {
-    title: `blog`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: config.siteUrl,
   },
   plugins: [
     {
@@ -99,6 +98,67 @@ module.exports = {
         path: "./src/pages/",
       },
       __key: "pages",
+    },
+    {
+      resolve: "gatsby-plugin-feed",
+      options: {
+        query: `
+        {
+          site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+          }
+        }
+      `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  categories: edge.node.frontmatter.tags,
+                  custom_elements: [
+                    { "content:encoded": edge.node.html },
+                    { author: config.userEmail },
+                  ],
+                  description: edge.node.excerpt,
+                  date: edge.node.fields.date,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                });
+              });
+            },
+            query: `
+            {
+              allMarkdownRemark(
+                sort: { order: DESC, fields: [frontmatter___date] },
+              ) {
+                edges {
+                  node {
+                    excerpt
+                    html
+                    timeToRead
+                    fields {
+                      slug
+                    }
+                    frontmatter {
+                      title
+                      date
+                      tags
+                    }
+                  }
+                }
+              }
+            }
+          `,
+            output: "/rss.xml",
+            title: config.siteRssTitle,
+          },
+        ],
+      },
     },
   ],
 };

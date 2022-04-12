@@ -7,10 +7,11 @@ import PostListing from "../components/postListing/postListing";
 const TagTemplate = ({ pageContext, data }) => {
   const { tag } = pageContext;
   const postEdges = data.allMarkdownRemark.edges;
+  const title = `Posts tagged as "${tag}"`;
   return (
     <>
-      <GatsbySeo title={`Posts tagged as "${tag}"`} />
-      <MainLayout>
+      <GatsbySeo title={title} />
+      <MainLayout subTitle={title}>
         <div className="row justify-content-center first-page">
           <div className="col-12 col-md-10 landing-site">
             <PostListing postEdges={postEdges} />

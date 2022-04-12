@@ -171,6 +171,11 @@ h1.herotitle {
   letter-spacing: -2%;
 }
 
+h1.herotitle small.text-muted {
+  color: #005da6 !important;
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 567px) {
   h1.herotitle {
     font-size: 32px;

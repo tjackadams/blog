@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import config from "../../../data/SiteConfig";
 import SocialInfo from "../social/socialInfo";
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, subTitle }) => {
   const { graphBanner } = useStaticQuery(
     graphql`
       query HeaderQuery {
@@ -52,7 +52,10 @@ const MainLayout = ({ children }) => {
                         className="herotitle text-md-left"
                         style={{ color: "#FFFFFF" }}
                       >
-                        {config.siteTitle}
+                        {config.siteTitle} <br />
+                        {subTitle ? (
+                          <small className="text-muted">{subTitle}</small>
+                        ) : null}
                       </h1>
                     </Link>
                   </div>

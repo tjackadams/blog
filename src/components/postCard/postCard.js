@@ -20,11 +20,11 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
           />
         </div>
         <div className="col-lg-8 col-md-12 post-card-header">
-          <h5 className="entry-title">
+          <p className="h5 entry-title">
             <Link to={path} rel="bookmark">
               {title}
             </Link>
-          </h5>
+          </p>
           <div className="entry-meta desktop-view">
             <span className="entry-avatar">
               <img
@@ -126,22 +126,5 @@ const PostCard = ({ cover, date, description, path, tags, title }) => {
     </article>
   );
 };
-
-// PostCard.propTypes = {
-//   cover: PropTypes.shape({
-//     alt: PropTypes.string(),
-//     title: PropTypes.string(),
-//     src: PropTypes.shape({
-//       childImageSharp: PropTypes.shape({
-//         gatsbyImageData: PropTypes.shape({}),
-//       }),
-//     }),
-//   }),
-//   date: PropTypes.string(),
-//   description: PropTypes.string(),
-//   path: PropTypes.string(),
-//   tags: PropTypes.array(),
-//   title: PropTypes.string(),
-// };
 
 export default PostCard;

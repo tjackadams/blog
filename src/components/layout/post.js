@@ -1,16 +1,13 @@
+import { Link } from "gatsby";
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "gatsby";
-import { Footer, SocialInfo } from "../components";
-
-import "./site.css";
+import Footer from "../footer/footer";
+import SocialInfo from "../social/socialInfo";
 
 const PostLayout = ({ pageTitle, children }) => {
   return (
     <>
-      <Helmet bodyAttributes={{ class: "custom-background" }}>
-        <html lang="en-gb" />
-      </Helmet>
+      <Helmet bodyAttributes={{ class: "custom-background" }}></Helmet>
       <nav className="site-header sticky-top">
         <div className="outer site-nav-main">
           <div className="inner">
@@ -38,8 +35,8 @@ const PostLayout = ({ pageTitle, children }) => {
       <div>
         <div className="wrapper">
           <div className="container" tabIndex={-1}>
-            <div className="row">
-              <div className="col-md content-area">
+            <div className="row justify-content-center">
+              <div className="col-12 col-md-10 content-area">
                 <main className="site-main">{children}</main>
               </div>
             </div>
@@ -50,4 +47,5 @@ const PostLayout = ({ pageTitle, children }) => {
     </>
   );
 };
+
 export default PostLayout;

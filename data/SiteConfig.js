@@ -2,15 +2,11 @@ const now = new Date();
 
 const config = {
   siteTitle: "tjackadams developer blog", // Site title.
-  siteTitleShort: "tjackadams blog", // Short site title for homescreen (PWA). Preferably should be under 12 characters to prevent truncation.
-  siteTitleAlt: "tjackadams developer blog", // Alternative site title for SEO.
   siteLogo: "/logos/logo-1024.png", // Logo used for SEO and manifest.
-  siteUrl: "https://blog.itadams.co.uk", // Domain of your website without pathPrefix.
-  pathPrefix: "/", // Prefixes all links. For cases when deployed to example.github.io/gatsby-advanced-starter/.
+  siteUrl: "https://blog.itadams.co.uk/", // Domain of your website without pathPrefix.
   siteDescription:
     "My personal blog. I figured it was better to start writing things down rather than forgetting them later. Maybe you'll find it useful.", // Website description used for RSS feeds/meta description tag.
-  siteRss: "/rss.xml", // Path to the RSS file.
-  siteRssTitle: "tjackadams blog RSS feed", // Title of the RSS feed
+  siteRssTitle: "tjackadams developer blog RSS feed", // Title of the RSS feed
   googleAnalyticsID: "G-S14YL6K5R1", // GA tracking ID.
   disqusShortname: "tjackadams", // Disqus shortname.
   dateFromFormat: "MMMM Do, YYYY", // Date format used in the frontmatter.
@@ -24,23 +20,12 @@ const config = {
   userLocation: "", // User location to display in the author segment.
   userAvatar: "", // User avatar to display in the author segment.
   userDescription: "", // User description to display in the author segment.
-  // Links to social profiles/projects you want to display in the author segment/navigation bar.
-  userLinks: [],
   copyright: `Copyright © ${now.getFullYear()}. tjackadams`, // Copyright string for the footer of the website and RSS feed.
   themeColor: "#005da6;", // Used for setting manifest and progress theme colors.
-  backgroundColor: "#f4f4f4;", // Used for setting manifest background color.
-  twitterUsername: "@tjackadams",
+  twitterHandle: "@tjackadams",
 };
 
 // Validate
-
-// Make sure pathPrefix is empty if not needed
-if (config.pathPrefix === "/") {
-  config.pathPrefix = "";
-} else {
-  // Make sure pathPrefix only contains the first forward slash
-  config.pathPrefix = `/${config.pathPrefix.replace(/^\/|\/$/g, "")}`;
-}
 
 // Make sure siteUrl doesn't have an ending forward slash
 if (config.siteUrl.substr(-1) === "/")

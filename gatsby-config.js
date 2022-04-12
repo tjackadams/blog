@@ -1,26 +1,29 @@
-const urljoin = require("url-join");
-const path = require("path");
 const config = require("./data/SiteConfig");
 
 module.exports = {
-  pathPrefix: config.pathPrefix === "" ? "/" : config.pathPrefix,
   siteMetadata: {
-    siteUrl: urljoin(config.siteUrl, config.pathPrefix),
-    rssMetadata: {
-      site_url: urljoin(config.siteUrl, config.pathPrefix),
-      feed_url: urljoin(config.siteUrl, config.pathPrefix, config.siteRss),
-      title: config.siteTitle,
-      description: config.siteDescription,
-      image_url: `${urljoin(
-        config.siteUrl,
-        config.pathPrefix
-      )}/logos/logo-512.png`,
-      copyright: config.copyright,
-    },
+    siteUrl: config.siteUrl,
   },
   plugins: [
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-lodash",
+    `gatsby-plugin-netlify`,
+    {
+      resolve: "gatsby-plugin-next-seo",
+      options: {
+        description: config.siteDescription,
+        language: "en-GB",
+        titleTemplate: `%s | ${config.siteTitle}`,
+        title: "home",
+        openGraph: {
+          type: "blog",
+          url: config.siteUrl,
+          site_name: config.siteTitle,
+        },
+        twitter: {
+          handle: config.twitterHandle,
+          cardType: "summary",
+        },
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -33,6 +36,22 @@ module.exports = {
       options: {
         name: "posts",
         path: `${__dirname}/content/`,
+      },
+    },
+    "gatsby-plugin-netlify-cms",
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: "G-S14YL6K5R1",
+      },
+    },
+    "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/images/favicon.png",
       },
     },
     {
@@ -54,110 +73,62 @@ module.exports = {
             resolve: "gatsby-remark-images",
             options: {
               maxWidth: 690,
+              withWebp: true,
+              quality: 80,
             },
           },
-          {
-            resolve: "gatsby-remark-responsive-iframe",
-          },
-          "gatsby-remark-copy-linked-files",
           "gatsby-remark-autolink-headers",
           "gatsby-remark-prismjs",
         ],
       },
     },
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: config.googleAnalyticsID,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-nprogress",
-      options: {
-        color: config.themeColor,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-purgecss`,
-      options: {
-        printRejected: true,
-        develop: false,
-        ignore: ["site.css"],
-      },
-    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
-    "gatsby-plugin-catch-links",
-    "gatsby-plugin-twitter",
     {
-      resolve: "gatsby-plugin-sitemap",
+      resolve: "gatsby-source-filesystem",
       options: {
-        exclude: [`/tags/*`, `/categories/*`],
+        name: "images",
+        path: "./src/images/",
       },
+      __key: "images",
     },
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        icon: "src/images/favicon.png",
-      },
-    },
-    {
-      resolve: "gatsby-plugin-netlify-cms",
-      options: {
-        modulePath: path.resolve("src/netlifycms/index.js"), // default: undefined
-        enableIdentityWidget: true,
-        publicPath: "admin",
-        htmlTitle: "Content Manager",
-        includeRobots: false,
-      },
-    },
+    `gatsby-plugin-sitemap`,
     {
       resolve: "gatsby-plugin-feed",
       options: {
-        setup(ref) {
-          const ret = ref.query.site.siteMetadata.rssMetadata;
-          ret.allMarkdownRemark = ref.query.allMarkdownRemark;
-          ret.generator = "tjackadams blog";
-          return ret;
-        },
         query: `
         {
           site {
-            siteMetadata {
-              rssMetadata {
-                site_url
-                feed_url
+              siteMetadata {
                 title
                 description
-                image_url
-                copyright
+                siteUrl
+                site_url: siteUrl
               }
-            }
           }
         }
       `,
         feeds: [
           {
-            serialize(ctx) {
-              const { rssMetadata } = ctx.query.site.siteMetadata;
-              return ctx.query.allMarkdownRemark.edges.map((edge) => ({
-                categories: edge.node.frontmatter.tags,
-                date: edge.node.fields.date,
-                title: edge.node.frontmatter.title,
-                description: edge.node.excerpt,
-                url: rssMetadata.site_url + edge.node.fields.slug,
-                guid: rssMetadata.site_url + edge.node.fields.slug,
-                custom_elements: [
-                  { "content:encoded": edge.node.html },
-                  { author: config.userEmail },
-                ],
-              }));
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  categories: edge.node.frontmatter.tags,
+                  custom_elements: [
+                    { "content:encoded": edge.node.html },
+                    { author: config.userEmail },
+                  ],
+                  description: edge.node.excerpt,
+                  date: edge.node.fields.date,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                });
+              });
             },
             query: `
             {
               allMarkdownRemark(
-                limit: 1000,
-                sort: { order: DESC, fields: [fields___date] },
+                sort: { order: DESC, fields: [frontmatter___date] },
               ) {
                 edges {
                   node {
@@ -166,7 +137,6 @@ module.exports = {
                     timeToRead
                     fields {
                       slug
-                      date
                     }
                     frontmatter {
                       title
@@ -178,7 +148,7 @@ module.exports = {
               }
             }
           `,
-            output: config.siteRss,
+            output: "/rss.xml",
             title: config.siteRssTitle,
           },
         ],

@@ -1,35 +1,34 @@
-import React from "react";
-import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
-import { MainLayout } from "../layout";
-import PostListing from "../components/PostListing/PostListing";
-import config from "../../data/SiteConfig";
+import { GatsbySeo } from "gatsby-plugin-next-seo";
+import React from "react";
+import MainLayout from "../components/layout/main";
+import PostListing from "../components/postListing/postListing";
 
 const TagTemplate = ({ pageContext, data }) => {
   const { tag } = pageContext;
   const postEdges = data.allMarkdownRemark.edges;
+  const title = `Posts tagged as "${tag}"`;
   return (
-    <MainLayout>
-      <div className="tag-container">
-        <Helmet title={`Posts tagged as "${tag}" | ${config.siteTitle}`} />
-        <div className="row first-page">
-          <div className="col-lg-9 col-md-8 col-sm-12 landing-site">
+    <>
+      <GatsbySeo title={title} />
+      <MainLayout subTitle={title}>
+        <div className="row justify-content-center first-page">
+          <div className="col-12 col-md-10 landing-site">
             <PostListing postEdges={postEdges} />
           </div>
         </div>
-      </div>
-    </MainLayout>
+      </MainLayout>
+    </>
   );
 };
 
 export default TagTemplate;
 
-/* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query TagPage($tag: String) {
+  query TagQuery($tag: String) {
     allMarkdownRemark(
       limit: 1000
-      sort: { fields: [fields___date], order: DESC }
+      sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
       totalCount
@@ -37,7 +36,6 @@ export const pageQuery = graphql`
         node {
           fields {
             slug
-            date
           }
           excerpt
           timeToRead
@@ -51,9 +49,7 @@ export const pageQuery = graphql`
               title
               src {
                 childImageSharp {
-                  fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
+                  gatsbyImageData(layout: FULL_WIDTH)
                 }
               }
             }

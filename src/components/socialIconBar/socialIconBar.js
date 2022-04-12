@@ -1,5 +1,5 @@
-import React from "react";
 import { Location } from "@reach/router";
+import React from "react";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
 const SocialIconBar = ({ title }) => {

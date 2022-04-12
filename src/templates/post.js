@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { format, parseISO } from "date-fns";
 import { graphql, Link } from "gatsby";
-import { FaGithub } from "react-icons/fa";
-import { parseISO, format } from "date-fns";
-import { Helmet } from "react-helmet";
+import { GatsbySeo } from "gatsby-plugin-next-seo";
 import kebabcase from "lodash.kebabcase";
-import { PostLayout } from "../layout";
+import React, { useEffect, useState } from "react";
+import { FaGithub } from "react-icons/fa";
 import config from "../../data/SiteConfig";
-import { Disqus, ReadNext, SEO, SocialIconBar } from "../components";
+import Disqus from "../components/disqus/disqus";
+import PostLayout from "../components/layout/post";
+import ReadNext from "../components/readNext/readNext";
+import SocialIconBar from "../components/socialIconBar/socialIconBar";
 
-const PostTemplate = ({ data, pageContext }) => {
+const PostPage = ({ data, pageContext }) => {
   const { slug } = pageContext;
   const postNode = data.markdownRemark;
   const post = postNode.frontmatter;
@@ -18,39 +20,58 @@ const PostTemplate = ({ data, pageContext }) => {
 
   const [pageTitle, setPageTitle] = useState(config.siteTitle);
 
-  useEffect(
-    function setupListener() {
-      function handleScroll() {
-        if (
-          document.body.scrollTop > 150 ||
-          document.documentElement.scrollTop > 150
-        ) {
-          setPageTitle(post.title);
-        } else {
-          setPageTitle(config.siteTitle);
-        }
+  useEffect(() => {
+    function handleScroll() {
+      if (
+        document.body.scrollTop > 150 ||
+        document.documentElement.scrollTop > 150
+      ) {
+        setPageTitle(post.title);
+      } else {
+        setPageTitle(config.siteTitle);
       }
+    }
 
-      window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-      return function cleanupListener() {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    },
-    [post]
-  );
+    return function cleanupListener() {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [post]);
+
+  const coverImage = post.cover.src.childrenImageSharp[0];
 
   return (
     <>
+      <GatsbySeo
+        title={post.title}
+        description={post.description}
+        openGraph={{
+          title: post.title,
+          description: post.description ? post.description : post.excerpt,
+          url: new URL(slug, config.siteUrl).toString(),
+          type: "article",
+          article: {
+            publishedTime: post.date,
+            authors: [config.userName],
+            tags: post.tags,
+          },
+          images: [
+            {
+              alt: post.cover.alt,
+              url: post.cover.src.publicURL,
+              width: coverImage.original.width,
+              height: coverImage.original.height,
+            },
+          ],
+        }}
+      />
+
       <div className="social-icon-bar">
         <SocialIconBar title={post.title} />
       </div>
 
       <PostLayout pageTitle={pageTitle}>
-        <Helmet>
-          <title>{`${post.title} | ${config.siteTitle}`}</title>
-        </Helmet>
-        <SEO postPath={slug} postNode={postNode} postSEO />
         <article style={{ marginBottom: "20px" }}>
           <div className="row justify-content-center postcontent">
             <div className="entry-content col-12">
@@ -69,7 +90,7 @@ const PostTemplate = ({ data, pageContext }) => {
                   </div>
                 </div>
               </div>
-              <div style={{ clear: "both", paddingBottom: "10px" }}></div>
+              <div style={{ clear: "both", paddingBottom: "10px" }} />
               <div className="entry-meta entry-meta-layout">
                 <p
                   style={{
@@ -91,8 +112,8 @@ const PostTemplate = ({ data, pageContext }) => {
                 <SocialIconBar title={post.title} />
               </div>
               <div dangerouslySetInnerHTML={{ __html: postNode.html }} />
-              <div className="row justify-content-center"></div>
-              <div style={{ clear: "both", paddingBottom: "10px" }}></div>
+              <div className="row justify-content-center" />
+              <div style={{ clear: "both", paddingBottom: "10px" }} />
               <div
                 className="authorinfoarea"
                 style={{
@@ -141,16 +162,23 @@ const PostTemplate = ({ data, pageContext }) => {
               </div>
             </div>
           </div>
-          <footer className="cattagsarea">
-            <span className="tags-links">
-              Tagged
-              {post.tags &&
-                post.tags.map((tag) => (
-                  <Link key={tag} to={`/tags/${kebabcase(tag)}`} rel="tag">
-                    {tag}
-                  </Link>
-                ))}
-            </span>
+          <footer className="row cattagsarea">
+            <div className="col-12">
+              <span className="tags-links">
+                Tagged
+                {post.tags &&
+                  post.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      to={`/tags/${kebabcase(tag)}`}
+                      rel="tag"
+                      className="ms-2"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+              </span>
+            </div>
           </footer>
         </article>
         <ReadNext />
@@ -160,7 +188,6 @@ const PostTemplate = ({ data, pageContext }) => {
   );
 };
 
-/* eslint no-undef: "off" */
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
@@ -177,15 +204,20 @@ export const pageQuery = graphql`
           title
           src {
             publicURL
+            childrenImageSharp {
+              original {
+                width
+                height
+              }
+            }
           }
         }
       }
       fields {
         slug
-        date
       }
     }
   }
 `;
 
-export default PostTemplate;
+export default PostPage;

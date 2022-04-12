@@ -1,11 +1,5 @@
-/* eslint "no-console": "off" */
-
 const path = require("path");
 const kebabCase = require("lodash.kebabcase");
-const formatISO = require("date-fns/formatISO");
-const parseISO = require("date-fns/parseISO");
-const isValid = require("date-fns/isValid");
-const isBefore = require("date-fns/isBefore");
 const siteConfig = require("./data/SiteConfig");
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -30,13 +24,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     if (Object.prototype.hasOwnProperty.call(node, "frontmatter")) {
       if (Object.prototype.hasOwnProperty.call(node.frontmatter, "slug"))
         slug = `/${kebabCase(node.frontmatter.slug)}`;
-      if (Object.prototype.hasOwnProperty.call(node.frontmatter, "date")) {
-        const date = parseISO(node.frontmatter.date);
-        if (!isValid(date))
-          console.warn(`WARNING: Invalid date.`, node.frontmatter);
-
-        createNodeField({ node, name: "date", value: formatISO(date) });
-      }
     }
     createNodeField({ node, name: "slug", value: slug });
   }
@@ -44,14 +31,23 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const postPage = path.resolve("src/templates/post.jsx");
-  const tagPage = path.resolve("src/templates/tag.jsx");
-  const listingPage = path.resolve("./src/templates/listing.jsx");
+
+  // templates have to be in the /templates folder
+  // and not in the /pages folder.
+  // this is because the templates will get processed twice
+  // and not correctly pass in the graphql variables
+  // e.g $skip & $limit
+  const postPage = path.resolve("src/templates/post.js");
+  const tagPage = path.resolve("src/templates/tag.js");
+  const listingPage = path.resolve("src/templates/index.js");
 
   // Get a full list of markdown posts
   const markdownQueryResult = await graphql(`
     {
-      allMarkdownRemark {
+      allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        limit: 1000
+      ) {
         edges {
           node {
             fields {
@@ -75,23 +71,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const tagSet = new Set();
 
-  const postsEdges = markdownQueryResult.data.allMarkdownRemark.edges;
-
-  // Sort posts
-  postsEdges.sort((postA, postB) => {
-    const dateA = parseISO(postA.node.frontmatter.date);
-
-    const dateB = parseISO(postB.node.frontmatter.date);
-
-    if (isBefore(dateA, dateB)) return 1;
-    if (isBefore(dateB, dateA)) return -1;
-
-    return 0;
-  });
+  const posts = markdownQueryResult.data.allMarkdownRemark.edges;
 
   // Paging
   const { postsPerPage } = siteConfig;
-  const pageCount = Math.ceil(postsEdges.length / postsPerPage);
+  const pageCount = Math.ceil(posts.length / postsPerPage);
 
   [...Array(pageCount)].forEach((_val, pageNum) => {
     createPage({
@@ -107,7 +91,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Post page creating
-  postsEdges.forEach((edge, index) => {
+  posts.forEach((edge, index) => {
     // Generate a list of tags
     if (edge.node.frontmatter.tags) {
       edge.node.frontmatter.tags.forEach((tag) => {
@@ -116,10 +100,10 @@ exports.createPages = async ({ graphql, actions }) => {
     }
 
     // Create post pages
-    const nextID = index + 1 < postsEdges.length ? index + 1 : 0;
-    const prevID = index - 1 >= 0 ? index - 1 : postsEdges.length - 1;
-    const nextEdge = postsEdges[nextID];
-    const prevEdge = postsEdges[prevID];
+    const nextID = index + 1 < posts.length ? index + 1 : 0;
+    const prevID = index - 1 >= 0 ? index - 1 : posts.length - 1;
+    const nextEdge = posts[nextID];
+    const prevEdge = posts[prevID];
 
     createPage({
       path: edge.node.fields.slug,

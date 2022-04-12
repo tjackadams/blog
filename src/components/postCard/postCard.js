@@ -1,41 +1,34 @@
-import React from "react";
+import { format, parseISO } from "date-fns";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 import kebabCase from "lodash.kebabcase";
-import { parseISO, format } from "date-fns";
-import Img from "gatsby-image";
+import React from "react";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import urljoin from "url-join";
 import config from "../../../data/SiteConfig";
 
-function ensureTrailingSlash(url) {
-  return url.endsWith("/") ? url : url + "/";
-}
-
 const PostCard = ({ cover, date, description, path, tags, title }) => {
-  const sharingUrl = ensureTrailingSlash(
-    urljoin(config.siteUrl, config.pathPrefix, path)
-  );
+  const sharingUrl = new URL(path, config.siteUrl);
 
   return (
     <article className="landing-main">
       <div className="row post-card">
         <div className="entry-image col-lg-4 col-md-12">
-          <Img
-            fluid={cover.src.childImageSharp.fluid}
+          <GatsbyImage
+            image={cover.src.childImageSharp.gatsbyImageData}
             alt={cover.alt}
             title={cover.title}
           />
         </div>
         <div className="col-lg-8 col-md-12 post-card-header">
-          <h5 className="entry-title">
+          <p className="h5 entry-title">
             <Link to={path} rel="bookmark">
               {title}
             </Link>
-          </h5>
+          </p>
           <div className="entry-meta desktop-view">
             <span className="entry-avatar">
               <img
-                src="https://secure.gravatar.com/avatar/1b6126e7eda7d78050b05080b32506b9?s=36&d=mm&r=g"
+                src="https://secure.gravatar.com/avatar/1b6126e7eda7d78050b05080b32506b9?s=72&d=mm&r=g"
                 width={36}
                 height={36}
                 alt="Thomas Adams"

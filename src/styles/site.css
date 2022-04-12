@@ -21,7 +21,7 @@ img {
 
 a {
   color: #005da6;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
@@ -169,6 +169,11 @@ h1.herotitle {
   line-height: 42px;
   color: #110f0f;
   letter-spacing: -2%;
+}
+
+h1.herotitle small.text-muted {
+  color: #005da6 !important;
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 567px) {
@@ -486,6 +491,10 @@ a.post-tags {
   text-decoration: none;
 }
 
+a.post-tags:hover {
+  text-decoration: underline;
+}
+
 .post-categories-tags {
   display: inline-block;
   vertical-align: middle;
@@ -548,8 +557,8 @@ a.post-tags {
 .postcontent {
   margin-bottom: 2px;
   padding-top: 60px;
-  padding-left: 16%;
-  padding-right: 16%;
+  padding-left: 8%;
+  padding-right: 8%;
   background-color: #fff;
 }
 
@@ -961,8 +970,6 @@ a.next.page-link2 {
 
 .cattagsarea {
   margin-bottom: 20px;
-  margin-left: -15px;
-  margin-right: -15px;
   background-color: #fff;
   padding: 1rem;
 }

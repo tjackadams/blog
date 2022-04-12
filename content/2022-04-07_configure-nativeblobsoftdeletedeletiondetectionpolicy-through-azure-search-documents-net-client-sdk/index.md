@@ -13,6 +13,7 @@ tags:
   - csharp
   - azure
 ---
+
 There are certain [conditions](https://docs.microsoft.com/en-us/azure/search/search-howto-reindex#rebuild-conditions) that will require a drop and rebuild of the index. I have recently been investigating ways that this could be achieved as part of the deployment pipeline.
 
 My initial approach was to tackle this via the azure cli as there are no bicep templates available (yet?). This worked ok for the initial approach as I dropped and created another index with the same name. This doesn't really work too well when pushing to a production environment as there will be some downtime on the index and search service.
@@ -70,7 +71,7 @@ public class NativeBlobSoftDeleteDeletionDetectionPolicy : HttpPipelinePolicy
 }
 ```
 
-First of all I write the request content to a memory stream. Then I parse the result of that into a [JsonNode](https://docs.microsoft.com/en-us/dotnet/api/system.text.json.nodes.jsonnode?view=net-6.0) object - this allows me to mutate the JSON document. I add the required Json property to the JSON document and write the content back to the request. 
+First of all I write the request content to a memory stream. Then I parse the result of that into a [JsonNode](https://docs.microsoft.com/en-us/dotnet/api/system.text.json.nodes.jsonnode?view=net-6.0) object - this allows me to mutate the JSON document. I add the required Json property to the JSON document and write the content back to the request.
 
 I can register the `HttpPipelinePolicy` like this
 
@@ -78,18 +79,18 @@ I can register the `HttpPipelinePolicy` like this
 var options = new SearchClientOptions();
 
 options.AddPolicy(
-  new NativeBlobSoftDeleteDeletionDetectionPolicy(), 
+  new NativeBlobSoftDeleteDeletionDetectionPolicy(),
   HttpPipelinePosition.PerCall
 );
 
 var searchIndexerClient = new SearchIndexerClient(
-  new Uri(_settings.SearchEndpoint), 
+  new Uri(_settings.SearchEndpoint),
   new AzureKeyCredential(_settings.SearchKey),
   options
 );
 ```
 
-It's not the prettiest of code samples and I'm not sure how I would feel about this in a production application, but I am only using this tool for deployments - it doesn't have to be perfect. 
+It's not the prettiest of code samples and I'm not sure how I would feel about this in a production application, but I am only using this tool for deployments - it doesn't have to be perfect.
 If you have any improvements, feel free to leave a comment.
 
 Happy Coding!

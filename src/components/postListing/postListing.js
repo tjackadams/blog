@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PostCard from "../PostCard/PostCard";
+import PostCard from "../postCard/postCard";
 
 const PostListing = ({ postEdges }) => {
   const [posts, setPosts] = useState([]);
@@ -11,7 +11,7 @@ const PostListing = ({ postEdges }) => {
         tags: post.node.frontmatter.tags,
         cover: post.node.frontmatter.cover,
         title: post.node.frontmatter.title,
-        date: post.node.fields.date,
+        date: post.node.frontmatter.date,
         description: post.node.frontmatter.description,
         timeToRead: post.node.timeToRead,
       };

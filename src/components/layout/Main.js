@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import BackgroundImage from "gatsby-background-image";
 import { getImage } from "gatsby-plugin-image";
 import { convertToBgImage } from "gbimage-bridge";
@@ -47,12 +47,14 @@ const MainLayout = ({ children }) => {
                     className="col-sm-12 col-md-10 herocontent"
                     style={{ opacity: "100%" }}
                   >
-                    <h1
-                      className="herotitle text-md-left"
-                      style={{ color: "#FFFFFF" }}
-                    >
-                      {config.siteTitle}
-                    </h1>
+                    <Link to="/">
+                      <h1
+                        className="herotitle text-md-left"
+                        style={{ color: "#FFFFFF" }}
+                      >
+                        {config.siteTitle}
+                      </h1>
+                    </Link>
                   </div>
                 </div>
               </div>

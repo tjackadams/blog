@@ -21,7 +21,7 @@ img {
 
 a {
   color: #005da6;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }

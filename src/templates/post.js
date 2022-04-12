@@ -8,7 +8,6 @@ import Disqus from "../components/disqus/disqus";
 import PostLayout from "../components/layout/post";
 import ReadNext from "../components/readNext/readNext";
 import SocialIconBar from "../components/socialIconBar/socialIconBar";
-import "./site.css";
 
 function PostPage({ data, pageContext }) {
   const { slug } = pageContext;

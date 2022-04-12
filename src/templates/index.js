@@ -7,7 +7,6 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import config from "../../data/SiteConfig";
 import MainLayout from "../components/layout/main";
 import PostListing from "../components/postListing/postListing";
-import "./site.css";
 
 const IndexPage = ({ data, pageContext }) => {
   const postEdges = data.allMarkdownRemark.edges;

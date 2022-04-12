@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import config from "../../data/SiteConfig";
 import MainLayout from "../components/layout/main";
 import PostListing from "../components/postListing/postListing";
-import "./site.css";
 
 const TagTemplate = ({ pageContext, data }) => {
   const { tag } = pageContext;

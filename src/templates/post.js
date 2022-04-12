@@ -4,12 +4,11 @@ import kebabcase from "lodash.kebabcase";
 import React, { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import config from "../../data/SiteConfig";
-import Disqus from "../components/disqus/disqus";
 import PostLayout from "../components/layout/post";
 import ReadNext from "../components/readNext/readNext";
 import SocialIconBar from "../components/socialIconBar/socialIconBar";
 
-function PostPage({ data, pageContext }) {
+const PostPage = ({ data, pageContext }) => {
   const { slug } = pageContext;
   const postNode = data.markdownRemark;
   const post = postNode.frontmatter;
@@ -148,11 +147,14 @@ function PostPage({ data, pageContext }) {
           </footer>
         </article>
         <ReadNext />
+        {/*
         <Disqus postNode={postNode} />
+             
+      */}
       </PostLayout>
     </>
   );
-}
+};
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {

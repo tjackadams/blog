@@ -9,8 +9,6 @@ import config from "../../../data/SiteConfig";
 const PostCard = ({ cover, date, description, path, tags, title }) => {
   const sharingUrl = new URL(path, config.siteUrl);
 
-  console.log(date);
-
   return (
     <article className="landing-main">
       <div className="row post-card">

@@ -1,11 +1,13 @@
 import { Link } from "gatsby";
 import React from "react";
+import { Helmet } from "react-helmet";
 import Footer from "../footer/footer";
 import SocialInfo from "../social/socialInfo";
 
 const PostLayout = ({ pageTitle, children }) => {
   return (
     <>
+      <Helmet bodyAttributes={{ class: "custom-background" }}></Helmet>
       <nav className="site-header sticky-top">
         <div className="outer site-nav-main">
           <div className="inner">

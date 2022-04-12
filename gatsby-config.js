@@ -54,7 +54,34 @@ module.exports = {
         icon: "src/images/favicon.png",
       },
     },
-    "gatsby-transformer-remark",
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-embed-gist",
+            options: {
+              gistCssUrlAddress:
+                "https://github.githubassets.com/assets/gist-embed-b3b573358bfc66d89e1e95dbf8319c09.css",
+              gistCssPreload: true,
+            },
+          },
+          {
+            resolve: "gatsby-remark-relative-images",
+          },
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 690,
+              withWebp: true,
+              quality: 80,
+            },
+          },
+          "gatsby-remark-autolink-headers",
+          "gatsby-remark-prismjs",
+        ],
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {

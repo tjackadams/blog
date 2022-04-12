@@ -5,6 +5,7 @@ module.exports = {
     siteUrl: config.siteUrl,
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     {
       resolve: "gatsby-plugin-next-seo",
       options: {

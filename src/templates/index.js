@@ -32,8 +32,8 @@ const IndexPage = ({ data, pageContext }) => {
             content="-dh3TAutR78VWqsTlt9useg3t40RPD4G-zYlU2DjIAU"
           />
         </Helmet>
-        <div className="row first-page">
-          <div className="col-lg-12 col-md-12 col-sm-12 landing-site">
+        <div className="row justify-content-center first-page">
+          <div className="col-12 col-md-10 landing-site">
             {!!posts.length && <PostListing postEdges={posts} />}
             {renderPaging(pageContext)}
           </div>

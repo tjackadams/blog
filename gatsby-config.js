@@ -99,6 +99,7 @@ module.exports = {
       },
       __key: "pages",
     },
+    `gatsby-plugin-sitemap`,
     {
       resolve: "gatsby-plugin-feed",
       options: {

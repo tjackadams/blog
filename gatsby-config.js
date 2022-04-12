@@ -1,3 +1,5 @@
+const config = require("./data/SiteConfig");
+
 module.exports = {
   siteMetadata: {
     title: `blog`,
@@ -5,25 +7,20 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-prettier-eslint",
+      resolve: "gatsby-plugin-next-seo",
       options: {
-        prettier: {
-          patterns: [
-            // the pattern "**/*.{js,jsx,ts,tsx}" is not used because we will rely on `eslint --fix`
-            "**/*.{css,scss,less}",
-            "**/*.{json,json5}",
-            "**/*.{graphql}",
-            "**/*.{md,mdx}",
-            "**/*.{html}",
-            "**/*.{yaml,yml}",
-          ],
+        description: config.siteDescription,
+        language: "en_GB",
+        titleTemplate: `%s | ${config.siteTitle}`,
+        title: "home",
+        openGraph: {
+          type: "blog",
+          url: config.siteUrl,
+          site_name: config.siteTitle,
         },
-        eslint: {
-          patterns: "**/*.{js,jsx,ts,tsx}",
-          customOptions: {
-            fix: true,
-            cache: true,
-          },
+        twitter: {
+          handle: config.twitterHandle,
+          cardType: "summary",
         },
       },
     },

@@ -31,7 +31,7 @@ That is when I needed a better solution with the following requirements:
 - Ideally should be able to run the query on demand.
 - A nice to have would be to include some additional stats, for instance the last run time.
 
-With the requirements in place, I went to search the internet if anyone had solved a similar problem. There was a huge amount of similar questions on Stack Overflow, but most of the scripts I found referenced old system database objects with are depreciated with Microsoft SQL Server 2017, until I came across [this](https://zakird.com/mssql/2011/06/07/finding-cross-database-dependencies) blog post from 2011. This script loops through all database and finds all references using [sys.sql\_expression\_dependencies](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sql-expression-dependencies-transact-sql?view=sql-server-ver15).
+With the requirements in place, I went to search the internet if anyone had solved a similar problem. There was a huge amount of similar questions on Stack Overflow, but most of the scripts I found referenced old system database objects with are depreciated with Microsoft SQL Server 2017, until I came across [this](https://zakird.com/mssql/2011/06/07/finding-cross-database-dependencies) blog post from 2011. This script loops through all database and finds all references using [sys.sql_expression_dependencies](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-sql-expression-dependencies-transact-sql?view=sql-server-ver15).
 
 The script I ended up with is embedded at the bottom of this post, but I'll run through it now so we know what is going on in the script.
 
@@ -83,7 +83,7 @@ First we are querying for a list of databases excluding any that are offline or 
             END;
 ```
 
-We then loop through the list of databases, querying the dependencies that reference our **Target Table**. You might also notice that we join on the [sys.query\_store\_query](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-transact-sql?view=sql-server-ver15) table, this is so we can pull the **last\_execution\_time** if it exists. This information is stored in a temporary table which is great, but we need some way to tell if the dependency performs an inserts into our target table.
+We then loop through the list of databases, querying the dependencies that reference our **Target Table**. You might also notice that we join on the [sys.query_store_query](https://docs.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-query-store-query-transact-sql?view=sql-server-ver15) table, this is so we can pull the **last_execution_time** if it exists. This information is stored in a temporary table which is great, but we need some way to tell if the dependency performs an inserts into our target table.
 
 ```sql
 WHILE ( SELECT COUNT(*)
@@ -119,7 +119,7 @@ WHILE ( SELECT COUNT(*)
             END;
 ```
 
-We are now looping through the dependencies in the previous code block and querying the [sys.dm\_sql\_referenced\_entities](https://docs.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-sql-referenced-entities-transact-sql?view=sql-server-ver15) dynamic management view. This view has the property that we are interested in `is_updated` which according to the docs **The object or column is modified**.
+We are now looping through the dependencies in the previous code block and querying the [sys.dm_sql_referenced_entities](https://docs.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-sql-referenced-entities-transact-sql?view=sql-server-ver15) dynamic management view. This view has the property that we are interested in `is_updated` which according to the docs **The object or column is modified**.
 
 You are probably thinking "but that includes both updates **AND** inserts!", and you would be correct. I couldn't find a reliable way to filter it down to **JUST** inserts, so if you know of a way please leave a comment at the bottom or let me know on the gist.
 

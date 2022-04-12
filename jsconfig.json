@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "public", ".cache"],
+  "include": ["src/**/*"],
+  "typeAcquisition": { "enable": true }
+}

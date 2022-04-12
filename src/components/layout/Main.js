@@ -1,12 +1,10 @@
-import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { getImage, GatsbyImage } from "gatsby-plugin-image";
-import { convertToBgImage } from "gbimage-bridge";
 import BackgroundImage from "gatsby-background-image";
-
-import SocialInfo from "../social/socialInfo";
-
+import { getImage } from "gatsby-plugin-image";
+import { convertToBgImage } from "gbimage-bridge";
+import React from "react";
 import config from "../../../data/SiteConfig";
+import SocialInfo from "../social/socialInfo";
 
 const MainLayout = ({ children }) => {
   const { graphBanner } = useStaticQuery(

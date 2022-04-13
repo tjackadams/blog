@@ -40,7 +40,7 @@ module.exports = {
     },
     "gatsby-plugin-netlify-cms",
     {
-      resolve: "gatsby-plugin-google-gtags",
+      resolve: "gatsby-plugin-google-gtag",
       options: {
         trackingIds: [config.googleAnalyticsID],
       },
@@ -58,6 +58,12 @@ module.exports = {
       resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
+          {
+            resolve: "gatsby-remark-autolink-headers",
+            options: {
+              offsetY: "200",
+            },
+          },
           {
             resolve: "gatsby-remark-embed-gist",
             options: {
@@ -77,7 +83,6 @@ module.exports = {
               quality: 80,
             },
           },
-          "gatsby-remark-autolink-headers",
           "gatsby-remark-prismjs",
         ],
       },

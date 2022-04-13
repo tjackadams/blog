@@ -40,9 +40,9 @@ module.exports = {
     },
     "gatsby-plugin-netlify-cms",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: "gatsby-plugin-google-gtags",
       options: {
-        trackingId: "G-S14YL6K5R1",
+        trackingIds: [config.googleAnalyticsID],
       },
     },
     "gatsby-plugin-image",
